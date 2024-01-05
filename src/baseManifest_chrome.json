@@ -1,0 +1,27 @@
+{
+    "name": "BedsteLectio",
+    "author": "JohnnyJTH",
+    "version": "0.1",
+    "manifest_version": 3,
+    "description": "BedsteLectio extension.",
+    "icons": {
+        "16": "assets/icons/icon-16.png",
+        "24": "assets/icons/icon-24.png",
+        "64": "assets/icons/icon-64.png",
+        "128": "assets/icons/icon-128.png"
+    },
+    "content_scripts": [
+        {
+            "matches": ["http://*/*", "https://*/*"],
+            "js": ["content/content.js"]
+        }
+    ],
+    "permissions": ["tabs", "storage"],
+    "host_permissions": ["http://*/*", "https://*/*"],
+    "web_accessible_resources": [
+        {
+            "resources": ["assets/*", "content/*"],
+            "matches": ["<all_urls>"]
+        }
+    ]
+}
