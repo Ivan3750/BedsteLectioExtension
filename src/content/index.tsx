@@ -58,7 +58,7 @@ if (isLocationSupported(document.location)) {
             break;
     }
     root.render(<Main page={page} />);
-} else {
+} else if (!document.location.pathname.includes('/login.aspx')) {
     const originalContent = document.cloneNode(true) as Document;
     const body = document.createElement('body');
     const app = document.createElement('div');

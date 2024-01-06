@@ -50,10 +50,8 @@ export const extractNews = (html: Document) => {
         // Remove leading and trailing newlines
         let node = content.firstChild;
         while (node && (node.nodeName === 'BR' || node.textContent == "\n")) {
-            console.log(heading, node)
             content.removeChild(node);
             node = content.firstChild;
-            console.log(heading, node)
         }
         node = content.lastChild;
         while (node && (node.nodeName === 'BR' || node.textContent == "\n")) {
