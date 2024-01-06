@@ -33,5 +33,5 @@ export const extractLessons = (html: Document) => {
         }
     }
 
-    return [];
+    return days
 };
