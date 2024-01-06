@@ -35,3 +35,35 @@ export const extractLessons = (html: Document) => {
 
     return days
 };
+
+export const extractNews = (html: Document) => {
+    const aktueltItems = html
+        .querySelectorAll("table#s_m_Content_Content_importantInfo >tbody > tr.DashWithScroll.textTop")
+    const news: { heading: string, body: string }[] = [];
+
+    aktueltItems.forEach(tr => {
+        const content = tr.querySelector("td.infoCol span");
+        if (!content) return;
+        const heading = content.querySelector("span.bb_b")?.textContent ?? "";
+        content.removeChild(content.querySelector("span.bb_b") ?? document.createElement("span"));
+
+        // Remove leading and trailing newlines
+        let node = content.firstChild;
+        while (node && (node.nodeName === 'BR' || node.textContent == "\n")) {
+            console.log(heading, node)
+            content.removeChild(node);
+            node = content.firstChild;
+            console.log(heading, node)
+        }
+        node = content.lastChild;
+        while (node && (node.nodeName === 'BR' || node.textContent == "\n")) {
+            content.removeChild(node);
+            node = content.lastChild;
+        }
+
+        const body = content.innerHTML.trim() ?? "";
+
+        news.push({ heading, body });
+    });
+    return news;
+}   

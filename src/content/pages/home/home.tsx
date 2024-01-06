@@ -2,13 +2,15 @@ import { ArrowRight } from 'lucide-react';
 import React, { useState } from 'react';
 import { DateTime } from 'luxon';
 import { linkTo } from 'utils/page';
-import { extractLessons } from './extractor';
+import { extractLessons, extractNews } from './extractor';
 import { Tabs, useTabs } from 'components/tabs';
 import { Timeline, TimelineItem } from 'components/timeline';
 
 export const Home = (props: { originalContent: Document }) => {
     const content = props.originalContent;
     const lessons = extractLessons(content);
+    const news = extractNews(content);
+
     const [tabProps] = useState({
         tabs: lessons.map(day => ({
             label: day.label,
@@ -45,11 +47,23 @@ export const Home = (props: { originalContent: Document }) => {
                         <p>Ingen kommende lektioner.</p>
                     )}
                 </div>
-            </div>
-            <div className="lg:col-span-1 h-[70vh] 2xl:h-[50vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
-                <h1 className="mb-0">Aktuelt</h1>
-                <div className="block overflow-y-auto not-prose">
-                    <p>Ingen aktuelle nyheder.</p>
+                <div className="lg:col-span-1 h-[70vh] 2xl:h-[50vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
+                    <h1 className="mb-0">Aktuelt</h1>
+                    <div className="block overflow-y-auto not-prose">
+                        {news.length > 0 ? (
+                            <div className="space-y-4">
+                                {news.map((newsItem, i) => (
+                                    <div key={i}>
+                                        <strong>{newsItem.heading}</strong>
+                                        <p className='[&_a]:underline' dangerouslySetInnerHTML={{ __html: newsItem.body }} />
+                                        {i < news.length - 1 && <hr className='!my-4 dark:border-t-gray-600/50' />}
+                                    </div>
+                                ))}
+                            </div>
+                        ) : (
+                            <p>Ingen aktuelle nyheder.</p>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>

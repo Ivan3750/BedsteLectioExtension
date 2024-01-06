@@ -31,9 +31,7 @@ const TimelineItem = ({ className, cancelled, color, textColor, title, titleNote
                 {!cancelled && (
                     <>
                         <time className="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">{time}</time>
-                        <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
-                            <div dangerouslySetInnerHTML={{ __html: description }} />
-                        </p>
+                        <p className="mb-4 text-base font-normal text-gray-500 dark:text-gray-400" dangerouslySetInnerHTML={{ __html: description }} />
                     </>
                 )}
             </a>
