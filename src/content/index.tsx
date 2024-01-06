@@ -24,7 +24,7 @@ const Basic = (props: { originalContent: Document }) => {
     return (
         <ThemeProvider>
             <SiteHeader />
-            <div dangerouslySetInnerHTML={{ __html: content }} />
+            <div className='page-container' dangerouslySetInnerHTML={{ __html: content }} />
         </ThemeProvider>
     );
 };

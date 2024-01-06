@@ -1,7 +1,7 @@
 import { School } from 'lucide-react';
 import React from 'react';
 import { cn } from 'utils/cn';
-import { PAGES, linkTo } from 'utils/page';
+import { getPages, linkTo } from 'utils/page';
 import { ThemeToggle } from './theme-toggle';
 
 export const SiteHeader = () => (
@@ -13,7 +13,7 @@ export const SiteHeader = () => (
                     <span className="hidden font-bold sm:inline-block">BedsteLectio</span>
                 </a>
                 <nav className="flex items-center space-x-6 text-sm font-medium">
-                    {Object.entries(PAGES).map(([key, page]) => (
+                    {Object.entries(getPages(document.location)).map(([key, page]) => (
                         <a key={key} className={cn("transition-colors hover:text-foreground/80", decodeURI(document.location.pathname) === page.link ? "text-foreground" : "text-foreground/60")} href={page.link}>
                             {page.name}
                         </a>

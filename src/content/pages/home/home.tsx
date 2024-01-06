@@ -65,6 +65,39 @@ export const Home = (props: { originalContent: Document }) => {
                         )}
                     </div>
                 </div>
+                <div className="lg:col-span-1 lg:row-start-2 h-[50vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
+                    <div className="mb-[0.3em] flex items-center justify-between">
+                        <h1 className="mb-0">Lektier</h1>
+                        <a href="/lektier">
+                            <ArrowRight />
+                        </a>
+                    </div>
+                    <div className="block overflow-y-auto">
+                        <p>Ingen kommende lektier.</p>
+                    </div>
+                </div>
+                <div className="lg:col-span-1 lg:row-start-2 h-[50vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
+                    <div className="mb-[0.3em] flex items-center justify-between">
+                        <h1 className="mb-0">Beskeder</h1>
+                        <a href="/beskeder">
+                            <ArrowRight />
+                        </a>
+                    </div>
+                    <div className="block overflow-y-auto">
+                        <p>Ingen ulæste beskeder.</p>
+                    </div>
+                </div>
+                <div className="lg:col-span-1 lg:row-start-2 h-[50vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
+                    <div className="mb-[0.3em] flex items-center justify-between">
+                        <h1 className="mb-0">Dokumenter</h1>
+                        <a href="/dokumenter">
+                            <ArrowRight />
+                        </a>
+                    </div>
+                    <div className="block overflow-y-auto">
+                        <p>Ingen nye dokumenter.</p>
+                    </div>
+                </div>
             </div>
         </div>
     )

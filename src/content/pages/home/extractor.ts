@@ -45,7 +45,7 @@ export const extractNews = (html: Document) => {
         const content = tr.querySelector("td.infoCol span");
         if (!content) return;
         const heading = content.querySelector("span.bb_b")?.textContent ?? "";
-        content.removeChild(content.querySelector("span.bb_b") ?? document.createElement("span"));
+        content.removeChild(content.querySelector("span.bb_b") ?? html.createElement("span"));
 
         // Remove leading and trailing newlines
         let node = content.firstChild;
