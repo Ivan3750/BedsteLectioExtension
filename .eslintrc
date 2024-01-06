@@ -12,16 +12,12 @@
             "version": "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
         }
     },
-    "plugins": ["@typescript-eslint", "prettier"],
+    "plugins": ["@typescript-eslint"],
     "rules": {
         "react/prop-types": [1],
-        // "prettier/prettier": [2],
         "@typescript-eslint/ban-ts-comment": [0],
         "@typescript-eslint/no-explicit-any": [1],
-        "@typescript-eslint/no-var-requires": [0],
-        "prettier/prettier": ["error", {
-            "endOfLine": "auto" }
-        ]
+        "@typescript-eslint/no-var-requires": [0]
     },
-    "extends": ["plugin:react/recommended", "plugin:@typescript-eslint/recommended", "plugin:prettier/recommended"]
+    "extends": ["plugin:react/recommended", "plugin:@typescript-eslint/recommended"]
 }
