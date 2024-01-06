@@ -21,8 +21,8 @@
         "upload:firefox": "cross-env NODE_ENV=upload TARGET=firefox webpack",
         "upload:opera": "cross-env NODE_ENV=upload TARGET=opera webpack",
         "upload:edge": "cross-env NODE_ENV=upload TARGET=edge webpack",
-        "build": "yarn run build:chrome && yarn run build:firefox && yarn run build:opera && yarn run build:edge",
-        "upload": "yarn run upload:chrome && yarn run upload:firefox && yarn run upload:opera && yarn run upload:edge",
+        "build": "pnpm run build:chrome && pnpm run build:firefox && pnpm run build:opera && pnpm run build:edge",
+        "upload": "pnpm run upload:chrome && pnpm run upload:firefox && pnpm run upload:opera && pnpm run upload:edge",
         "lint-fix": "eslint --ext js,jsx,ts,tsx, src --fix"
     },
     "author": "JohnnyJTH",
