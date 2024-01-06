@@ -25,8 +25,7 @@
         "tabs"
     ],
     "host_permissions": [
-        "http://*/*",
-        "https://*/*"
+        "*://*.lectio.dk/*"
     ],
     "web_accessible_resources": [
         {
@@ -35,7 +34,7 @@
                 "content/*"
             ],
             "matches": [
-                "<all_urls>"
+                "*://*.lectio.dk/*"
             ]
         }
     ],

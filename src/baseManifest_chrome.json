@@ -12,16 +12,30 @@
     },
     "content_scripts": [
         {
-            "matches": ["http://*/*", "https://*/*"],
-            "js": ["content/content.js"]
+            "js": [
+                "content/content.js"
+            ],
+            "matches": [
+                "*://*.lectio.dk/*"
+            ]
         }
     ],
-    "permissions": ["tabs", "storage"],
-    "host_permissions": ["http://*/*", "https://*/*"],
+    "permissions": [
+        "tabs",
+        "storage"
+    ],
+    "host_permissions": [
+        "*://*.lectio.dk/*"
+    ],
     "web_accessible_resources": [
         {
-            "resources": ["assets/*", "content/*"],
-            "matches": ["<all_urls>"]
+            "resources": [
+                "assets/*",
+                "content/*"
+            ],
+            "matches": [
+                "*://*.lectio.dk/*"
+            ]
         }
     ]
 }
