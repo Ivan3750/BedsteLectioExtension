@@ -1,5 +1,4 @@
-import React from 'react';
-import { createContext, useContext, useEffect, useState } from 'react';
+import React, { createContext, useContext, useEffect, useState } from 'react';
 
 type Theme = 'dark' | 'light' | 'system';
 
@@ -46,7 +45,7 @@ export function ThemeProvider({
 
     const value = {
         theme,
-        setTheme: (theme: Theme) => {
+        setTheme(theme: Theme) {
             localStorage.setItem(storageKey, theme);
             setTheme(theme);
         },
@@ -62,7 +61,9 @@ export function ThemeProvider({
 export const useTheme = () => {
     const context = useContext(ThemeProviderContext);
 
-    if (context === undefined) throw new Error('useTheme must be used within a ThemeProvider');
+    if (context === undefined) {
+        throw new Error('useTheme must be used within a ThemeProvider');
+    }
 
     return context;
 };
