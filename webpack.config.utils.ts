@@ -182,9 +182,6 @@ export const getResolves = () => {
             content: path.resolve(__dirname, './src/content/'),
             assets: path.resolve(__dirname, './src/assets/'),
             components: path.resolve(__dirname, './src/components/'),
-            types: path.resolve(__dirname, './src/types/'),
-            hooks: path.resolve(__dirname, './src/hooks/'),
-            '@redux': path.resolve(__dirname, './src/@redux/'),
         },
         extensions: ['.js', '.jsx', '.ts', '.tsx'],
     };
