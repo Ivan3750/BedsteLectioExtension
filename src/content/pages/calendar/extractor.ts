@@ -77,6 +77,8 @@ export const extractEvents = (html: Document) => {
         const color = stringToColor(event.hold ?? '', 100, 90).string;
         const textColor = stringToColor(event.hold ?? '', 100, 30).string;
         const className = event.hold ?? '';
+        const name = event.navn ? `${event.navn}<br>` : '';
+        const other = event.andet ? `<br><br>${event.andet}` : '';
 
         return {
             color: color,
@@ -84,9 +86,7 @@ export const extractEvents = (html: Document) => {
             end,
             extendedProps: {
                 cancelled: event.status === 'aflyst',
-                description: `${event.navn ? `${event.navn}<br>` : ''}${event.tidspunkt
-                    }<br>Hold: ${className}<br>Lærer: ${event.lærer}<br>Lokale: ${event.lokale}${event.andet ? `<br><br>${event.andet}` : ''
-                    }`,
+                description: `${name}${event.tidspunkt}<br>Hold: ${className}<br>Lærer: ${event.lærer}<br>Lokale: ${event.lokale}${other}`,
             },
             id: event.absid,
             start,
