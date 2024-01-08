@@ -24,14 +24,15 @@ export const extractLessons = (html: Document) => {
             status: lesson.status ?? '',
             teacher: lesson.lærer ?? '',
         }));
+
     const days: Array<{ label: string; lessons: typeof lessons }> = [];
     for (const lesson of lessons) {
         const day = lesson.interval.start?.hasSame(DateTime.now(), 'day')
             ? 'I dag'
             : (lesson.interval.start?.hasSame(DateTime.now().plus({ days: 1 }), 'day')
-                  ? 'I morgen'
-                  : toTitleCase(lesson.interval.start?.toFormat('EEEE d/M') ?? '')) ?? 'N/A';
-        if (days.some((day_) => day_.label === day) === undefined) {
+                ? 'I morgen'
+                : toTitleCase(lesson.interval.start?.toFormat('EEEE d/M') ?? '')) ?? 'N/A';
+        if (days.find((day_) => day_.label === day) === undefined) {
             days.push({ label: day, lessons: [lesson] });
         } else {
             days.find((day_) => day_.label === day)?.lessons.push(lesson);
