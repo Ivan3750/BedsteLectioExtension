@@ -11,14 +11,14 @@ type Props = {
 };
 
 export const Tabs = ({ tabs, selectedTabIndex, setSelectedTab }: Props): JSX.Element => {
-    const [buttonRefs, setButtonRefs] = useState<Array<HTMLButtonElement | undefined>>([]);
+    const [buttonRefs, setButtonRefs] = useState<Array<HTMLButtonElement | null>>([]);
 
     useEffect(() => {
         setButtonRefs((previous) => previous.slice(0, tabs.length));
     }, [tabs.length]);
 
-    const [hoveredTabIndex, setHoveredTabIndex] = useState<number | undefined>(null);
-    const [hoveredRect, setHoveredRect] = useState<DOMRect | undefined>(null);
+    const [hoveredTabIndex, setHoveredTabIndex] = useState<number | null>(null);
+    const [hoveredRect, setHoveredRect] = useState<DOMRect | null>(null);
 
     const navRef = useRef<HTMLDivElement>(null);
     const navRect = navRef.current?.getBoundingClientRect();
