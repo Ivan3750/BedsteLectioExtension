@@ -20,10 +20,6 @@
             ]
         }
     ],
-    "permissions": [
-        "storage",
-        "tabs"
-    ],
     "host_permissions": [
         "*://*.lectio.dk/*"
     ],
