@@ -15,7 +15,12 @@
     "plugins": ["@typescript-eslint", "prettier"],
     "rules": {
         "react/prop-types": [1],
-        "prettier/prettier": [2],
+        "prettier/prettier": [
+            "error",
+            {
+                "endOfLine": "auto"
+            }
+        ],
         "@typescript-eslint/ban-ts-comment": [0],
         "@typescript-eslint/no-explicit-any": [1],
         "@typescript-eslint/no-var-requires": [0]
