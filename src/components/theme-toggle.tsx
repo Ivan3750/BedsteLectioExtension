@@ -4,7 +4,7 @@ import { Button } from 'components/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from 'components/dropdown-menu';
 import { useTheme } from 'components/theme-provider';
 
-export function ThemeToggle() {
+export const ThemeToggle = () => {
     const { setTheme } = useTheme();
 
     return (
@@ -41,4 +41,4 @@ export function ThemeToggle() {
             </DropdownMenuContent>
         </DropdownMenu>
     );
-}
+};

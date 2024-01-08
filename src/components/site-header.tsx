@@ -3,6 +3,7 @@ import React from 'react';
 import { ThemeToggle } from './theme-toggle';
 import { cn } from 'utils/cn';
 import { getPages, linkTo } from 'utils/page';
+import { ExtensionToggle } from './extension-toggle';
 
 export const SiteHeader = () => (
     <header className="bg-background/60 dark:bg-dark/60 sticky top-0 z-40 w-full border-b dark:border-white/10 shadow-sm backdrop-blur">
@@ -30,6 +31,7 @@ export const SiteHeader = () => (
                 </nav>
             </div>
             <div className="flex flex-1 justify-end">
+                <ExtensionToggle />
                 <ThemeToggle />
             </div>
         </div>
