@@ -81,7 +81,7 @@ export const HomePage = (props: { originalContent: Document }) => {
                 <div className="lg:col-span-1 lg:row-start-2 h-[50vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
                     <div className="mb-[0.3em] flex items-center justify-between">
                         <h1 className="mb-0">Lektier</h1>
-                        <a href="/lektier">
+                        <a href={linkTo(document.location, 'homework')}>
                             <ArrowRight />
                         </a>
                     </div>
@@ -92,7 +92,7 @@ export const HomePage = (props: { originalContent: Document }) => {
                 <div className="lg:col-span-1 lg:row-start-2 h-[50vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
                     <div className="mb-[0.3em] flex items-center justify-between">
                         <h1 className="mb-0">Beskeder</h1>
-                        <a href="/beskeder">
+                        <a href={linkTo(document.location, 'messages')}>
                             <ArrowRight />
                         </a>
                     </div>
@@ -103,7 +103,7 @@ export const HomePage = (props: { originalContent: Document }) => {
                 <div className="lg:col-span-1 lg:row-start-2 h-[50vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
                     <div className="mb-[0.3em] flex items-center justify-between">
                         <h1 className="mb-0">Dokumenter</h1>
-                        <a href="/dokumenter">
+                        <a href={linkTo(document.location, 'documents')}>
                             <ArrowRight />
                         </a>
                     </div>
