@@ -8,7 +8,7 @@ import { CleanWebpackPlugin } from 'clean-webpack-plugin';
 import ESLintPlugin from 'eslint-webpack-plugin';
 import WebpackExtensionManifestPlugin from 'webpack-extension-manifest-plugin';
 
-const ExtReloader = require('webpack-ext-reloader-mv3');
+const ExtReloader = require('webpack-ext-reloader');
 
 const dotenv = require('dotenv').config({ path: __dirname + '/.env' });
 const baseManifestChrome = require('./src/baseManifest_chrome.json');
@@ -83,6 +83,7 @@ export const getOutput = (browserDir: string, outputDir = Directories.DEV_DIR) =
  */
 export const getEntry = (sourceDir = Directories.SRC_DIR) => ({
     content: [path.resolve(__dirname, `${sourceDir}/content/index.tsx`)],
+    background: [path.resolve(__dirname, `${sourceDir}/background/index.ts`)],
 });
 
 /**
@@ -165,6 +166,7 @@ export const getCleanWebpackPlugins = (...dirs: string[]) => [
 export const getResolves = () => ({
     alias: {
         utils: path.resolve(__dirname, './src/utils/'),
+        background: path.resolve(__dirname, './src/background/'),
         content: path.resolve(__dirname, './src/content/'),
         assets: path.resolve(__dirname, './src/assets/'),
         components: path.resolve(__dirname, './src/components/'),
@@ -216,8 +218,6 @@ export const config = EnvConfig;
  */
 export const getExtensionReloaderPlugins = () => [
     new ExtReloader({
-        port: 9090,
-        reloadPage: true,
         entries: {
             contentScript: ['content'],
         },
