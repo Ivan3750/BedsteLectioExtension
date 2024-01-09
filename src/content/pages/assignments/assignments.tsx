@@ -47,7 +47,7 @@ export const AssignmentsPage = (props: { originalContent: Document }) => {
     return (
         <div className="page-container">
             <div className="space-y-4">
-                <h1>Assignments</h1>
+                <h1>Opgaver</h1>
                 <div className="flex justify-between">
                     <Tabs {...tabs.tabProps} />
                     {/* TODO: Lmao */}
