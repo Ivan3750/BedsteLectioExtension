@@ -78,7 +78,7 @@ export const Tabs = ({ tabs, selectedTabIndex, setSelectedTab }: Props): JSX.Ele
     }
 
     return (
-        <nav ref={navRef} className="flex flex-shrink-0 items-center relative z-0 py-2" onPointerLeave={onLeaveTabs}>
+        <nav ref={navRef} className="flex flex-shrink-0 items-center relative z-0 pb-2" onPointerLeave={onLeaveTabs}>
             {tabs.map((item, i) => (
                 <button
                     key={i}
