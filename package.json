@@ -1,7 +1,7 @@
 {
     "name": "bedstelectio",
     "displayName": "BedsteLectio",
-    "version": "0.0.4",
+    "version": "0.0.5",
     "description": "BedsteLectio extension.",
     "main": "webpack.config.js",
     "scripts": {
