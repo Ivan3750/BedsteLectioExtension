@@ -20,6 +20,12 @@
             ]
         }
     ],
+    "background": {
+        "scripts": [
+            "background/background.js"
+        ],
+        "type": "module"
+    },
     "host_permissions": [
         "*://*.lectio.dk/*"
     ],
@@ -27,7 +33,8 @@
         {
             "resources": [
                 "assets/*",
-                "content/*"
+                "content/*",
+                "background/*"
             ],
             "matches": [
                 "*://*.lectio.dk/*"
