@@ -1,7 +1,7 @@
 import { DateTime } from 'luxon';
 import { extractLesson } from '../calendar/extractor';
 import { stringToColor } from 'utils/color';
-import { constructInterval } from 'utils/interval';
+import { constructInterval } from 'utils/datetime';
 import { extractSchool } from 'utils/page';
 import { toTitleCase } from 'utils/string';
 

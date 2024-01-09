@@ -1,7 +1,7 @@
 import { DateTime, Interval } from 'luxon';
 import { af } from 'utils/array';
 import { stringToColor } from 'utils/color';
-import { constructInterval } from 'utils/interval';
+import { constructInterval } from 'utils/datetime';
 import { linkToEvent } from 'utils/page';
 
 export const extractEvents = (html: Document) => {

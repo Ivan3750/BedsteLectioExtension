@@ -6,6 +6,7 @@ import { isLocationSupported, toPageKey } from 'utils/page';
 import { SiteHeader } from 'components/site-header';
 import { CalendarPage } from './pages/calendar';
 import { createEnableButton } from './content';
+import { AssignmentsPage } from './pages/assignments';
 
 const Main = (props: { page: JSX.Element }) => (
     <ThemeProvider>
@@ -64,6 +65,10 @@ if (localStorage.getItem('bedstelectio-disabled')) {
             }
             case 'calendar': {
                 page = <CalendarPage originalContent={originalContent} />;
+                break;
+            }
+            case 'assignments': {
+                page = <AssignmentsPage originalContent={originalContent} />;
                 break;
             }
             default: {

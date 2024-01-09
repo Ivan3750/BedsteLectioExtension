@@ -1,5 +1,9 @@
 import { DateTime, Interval } from 'luxon';
 
+export const constructDateTime = (input: string) => {
+    return DateTime.fromFormat(input, 'd/M-yyyy HH:mm', { locale: 'da' });
+};
+
 export const constructInterval = (input: string) => {
     const parts = input.split(' ');
     let fromDate;
@@ -15,7 +19,7 @@ export const constructInterval = (input: string) => {
         return Interval.invalid('Invalid input string for interval');
     }
 
-    const from = DateTime.fromFormat(`${fromDate} ${fromTime}`, 'd/M-yyyy HH:mm', { locale: 'da' });
-    const to = DateTime.fromFormat(`${toDate} ${toTime}`, 'd/M-yyyy HH:mm', { locale: 'da' });
+    const from = constructDateTime(`${fromDate} ${fromTime}`);
+    const to = constructDateTime(`${toDate} ${toTime}`);
     return Interval.fromDateTimes(from, to);
 };
