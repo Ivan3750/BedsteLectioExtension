@@ -66,6 +66,21 @@ jobs:
                   zip -r "$FILE_PREFIX-edge.zip" ./*
                   cd ..
                   gh release create "$DAILY_VERSION" --generate-notes "firefox/$FILE_PREFIX-firefox.zip" "chrome/$FILE_PREFIX-chrome.zip" "edge/$FILE_PREFIX-edge.zip"
+    Chrome:
+        if: needs.Version.outputs.created
+        needs: Version
+        name: Submit (Chrome)
+        environment: Chrome
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/download-artifact@v3
+            - run: npx chrome-webstore-upload-cli@2 upload --auto-publish
+              working-directory: chrome
+              env:
+                  EXTENSION_ID: ${{ secrets.EXTENSION_ID }}
+                  CLIENT_ID: ${{ secrets.CLIENT_ID }}
+                  CLIENT_SECRET: ${{ secrets.CLIENT_SECRET }}
+                  REFRESH_TOKEN: ${{ secrets.REFRESH_TOKEN }}
     Firefox:
         if: needs.Version.outputs.created
         needs: Version
