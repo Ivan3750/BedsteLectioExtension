@@ -65,4 +65,4 @@ jobs:
                   cd ../edge
                   zip -r "$FILE_PREFIX-edge.zip" ./*
                   cd ..
-                  gh release create "$DAILY_VERSION" --generate-notes "$FILE_PREFIX-firefox.zip" "$FILE_PREFIX-chrome.zip" "$FILE_PREFIX-edge.zip"
+                  gh release create "$DAILY_VERSION" --generate-notes "firefox/$FILE_PREFIX-firefox.zip" "chrome/$FILE_PREFIX-chrome.zip" "edge/$FILE_PREFIX-edge.zip"
