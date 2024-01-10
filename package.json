@@ -21,7 +21,7 @@
         "upload:opera": "cross-env NODE_ENV=upload TARGET=opera webpack",
         "upload:edge": "cross-env NODE_ENV=upload TARGET=edge webpack",
         "build": "pnpm run build:chrome && pnpm run build:firefox && pnpm run build:opera && pnpm run build:edge",
-        "upload": "pnpm run upload:chrome && pnpm run upload:firefox && pnpm run upload:opera && pnpm run upload:edge",
+        "upload": "pnpm run upload:chrome && pnpm run upload:firefox && pnpm run upload:edge",
         "lint-fix": "eslint --ext js,jsx,ts,tsx, src --fix"
     },
     "author": "JohnnyJTH",

@@ -27,37 +27,42 @@ jobs:
               uses: fregante/daily-version-action@v2
             - name: Update manifest.json with version ${{ env.DAILY_VERSION}}
               if: env.DAILY_VERSION_CREATED
-              run: pnpm dlx dot-json@1 "$DIRECTORY/firefox/manifest.json" version "$DAILY_VERSION"
-            - name: Upload Chrome Extension
-              if: env.DAILY_VERSION_CREATED
-              uses: actions/upload-artifact@v3
-              with:
-                  name: chrome
-                  path: dist/chrome
+              run: |
+                  pnpm dlx dot-json@1 "$DIRECTORY/firefox/manifest.json" version "$DAILY_VERSION"
+                  pnpm dlx dot-json@1 "$DIRECTORY/chrome/manifest.json" version "$DAILY_VERSION"
+                  pnpm dlx dot-json@1 "$DIRECTORY/edge/manifest.json" version "$DAILY_VERSION"
+
             - name: Upload Firefox Extension
               if: env.DAILY_VERSION_CREATED
               uses: actions/upload-artifact@v3
               with:
                   name: firefox
                   path: dist/firefox
-            - name: Upload Opera Extension
+            - name: Upload Chrome Extension
               if: env.DAILY_VERSION_CREATED
               uses: actions/upload-artifact@v3
               with:
-                  name: opera
-                  path: dist/opera
+                  name: chrome
+                  path: dist/chrome
             - name: Upload Edge Extension
               if: env.DAILY_VERSION_CREATED
               uses: actions/upload-artifact@v3
               with:
                   name: edge
                   path: dist/edge
+
             - name: Create release
               if: env.DAILY_VERSION_CREATED
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
               working-directory: ${{ env.DIRECTORY }}
               run: |
-                  FILENAME="$PROJECT_NAME-$DAILY_VERSION.zip"
-                  zip -r "$FILENAME" ./firefox/*
-                  gh release create "$DAILY_VERSION" --generate-notes "$FILENAME"
+                  FILE_PREFIX="$PROJECT_NAME-$DAILY_VERSION"
+                  cd firefox
+                  zip -r "$FILE_PREFIX-firefox.zip" ./*
+                  cd ../chrome
+                  zip -r "$FILE_PREFIX-chrome.zip" ./*
+                  cd ../edge
+                  zip -r "$FILE_PREFIX-edge.zip" ./*
+                  cd ..
+                  gh release create "$DAILY_VERSION" --generate-notes "$FILE_PREFIX-firefox.zip" "$FILE_PREFIX-chrome.zip" "$FILE_PREFIX-edge.zip"
