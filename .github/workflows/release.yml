@@ -1,0 +1,63 @@
+env:
+    DIRECTORY: dist
+    PROJECT_NAME: BedsteLectio
+
+name: Release
+on:
+    workflow_dispatch: null
+jobs:
+    Version:
+        outputs:
+            created: ${{ env.DAILY_VERSION_CREATED }}
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - uses: actions/setup-node@v4
+              with:
+                  node-version: 19.3.0
+            - uses: pnpm/action-setup@v2
+              with:
+                  version: 8
+
+            - name: Build
+              run: |
+                  pnpm install
+                  pnpm upload
+            - name: Create version and tag
+              uses: fregante/daily-version-action@v2
+            - name: Update manifest.json with version ${{ env.DAILY_VERSION}}
+              if: env.DAILY_VERSION_CREATED
+              run: pnpm dlx dot-json@1 "$DIRECTORY/firefox/manifest.json" version "$DAILY_VERSION"
+            - name: Upload Chrome Extension
+              if: env.DAILY_VERSION_CREATED
+              uses: actions/upload-artifact@v3
+              with:
+                  name: chrome
+                  path: dist/chrome
+            - name: Upload Firefox Extension
+              if: env.DAILY_VERSION_CREATED
+              uses: actions/upload-artifact@v3
+              with:
+                  name: firefox
+                  path: dist/firefox
+            - name: Upload Opera Extension
+              if: env.DAILY_VERSION_CREATED
+              uses: actions/upload-artifact@v3
+              with:
+                  name: opera
+                  path: dist/opera
+            - name: Upload Edge Extension
+              if: env.DAILY_VERSION_CREATED
+              uses: actions/upload-artifact@v3
+              with:
+                  name: edge
+                  path: dist/edge
+            - name: Create release
+              if: env.DAILY_VERSION_CREATED
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              working-directory: ${{ env.DIRECTORY }}
+              run: |
+                  FILENAME="$PROJECT_NAME-$DAILY_VERSION.zip"
+                  zip -r "$FILENAME" ./*
+                  gh release create "$DAILY_VERSION" --generate-notes "$FILENAME"
