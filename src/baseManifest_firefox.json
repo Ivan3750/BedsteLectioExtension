@@ -1,7 +1,7 @@
 {
     "name": "BedsteLectio",
     "author": "JohnnyJTH",
-    "version": "0.5",
+    "version": "0.0.0",
     "manifest_version": 3,
     "description": "BedsteLectio extension.",
     "icons": {
