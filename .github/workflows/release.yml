@@ -66,3 +66,16 @@ jobs:
                   zip -r "$FILE_PREFIX-edge.zip" ./*
                   cd ..
                   gh release create "$DAILY_VERSION" --generate-notes "firefox/$FILE_PREFIX-firefox.zip" "chrome/$FILE_PREFIX-chrome.zip" "edge/$FILE_PREFIX-edge.zip"
+    Firefox:
+        if: needs.Version.outputs.created
+        needs: Version
+        name: Submit (Firefox)
+        environment: Firefox
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/download-artifact@v3
+            - run: npx web-ext@7 sign --use-submission-api --channel listed
+              working-directory: firefox
+              env:
+                  WEB_EXT_API_KEY: ${{ secrets.WEB_EXT_API_KEY }}
+                  WEB_EXT_API_SECRET: ${{ secrets.WEB_EXT_API_SECRET }}
