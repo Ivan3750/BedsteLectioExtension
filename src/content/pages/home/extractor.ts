@@ -16,7 +16,7 @@ export const extractLessons = (html: Document) => {
             textColor: stringToColor(lesson.hold ?? '', 100, 30).string,
             class: lesson.hold ?? '',
             id: lesson.absid,
-            link: `/lectio/${extractSchool(document.location)}/aktivitet/aktivitetforside2.aspx?absid=${lesson.absid}`,
+            link: `/lectio/${extractSchool(document.location.pathname)}/aktivitet/aktivitetforside2.aspx?absid=${lesson.absid}`,
             interval: constructInterval(lesson.tidspunkt),
             name: lesson.navn?.replace('prv.', 'prøve').replace('mdt.', 'mundtlig').replace('skr.', 'skriftlig') ?? '',
             note: lesson.andet ?? '',

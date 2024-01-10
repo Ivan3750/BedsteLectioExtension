@@ -11,7 +11,7 @@ export const PAGES = {
 };
 
 export const getPages = (location: Location) => {
-    const school = extractSchool(location);
+    const school = extractSchool(location.pathname);
     const pages: Record<string, { name: string; link: string; supported: boolean }> = {};
     for (const page of Object.keys(PAGES)) {
         // @ts-expect-error
@@ -22,19 +22,23 @@ export const getPages = (location: Location) => {
 };
 
 export const isLocationSupported = (location: Location) =>
-    location &&
-    location.pathname &&
-    Object.values(getPages(location))
-        .filter((page) => page.supported)
-        .map((page) => page.link)
-        .some((substring) => location.pathname.includes(substring));
+    shouldOverridePath(location.pathname)
+        ? true
+        : Object.values(getPages(location))
+            .filter((page) => page.supported)
+            .map((page) => page.link)
+            .some((substring) => location.pathname.includes(substring));
 
-export const extractSchool = (location: Location) => location.pathname.split('/')[2];
+export const shouldOverridePath = (path: string) => {
+    return path.includes('login_list.aspx') || path === '/';
+};
+
+export const extractSchool = (value: string) => value.match(/\/lectio\/(\d*)\//)?.[1] ?? '';
 
 export const linkTo = (location: Location, to: keyof typeof PAGES) => getPages(location)[to].link;
 
 export const linkToEvent = (location: Location, event: { absid: string }) => {
-    const school = extractSchool(location);
+    const school = extractSchool(location.pathname);
     return `/lectio/${school}/aktivitet/aktivitetforside2.aspx?absid=${event.absid}`;
 };
 
@@ -43,7 +47,13 @@ export const linkToCalendarDate = (location: Location, date: DateTime) => {
 };
 
 export const toPageKey = (location: Location) => {
-    const school = extractSchool(location);
+    if (location.pathname === '/') {
+        return 'lectioroot';
+    }
+    if (location.pathname.includes('login_list.aspx')) {
+        return 'lectio';
+    }
+    const school = extractSchool(location.pathname);
     const page = Object.entries(PAGES).find(
         ([_, page]) => location.pathname === page.link.replace('$school', school),
     )?.[0];

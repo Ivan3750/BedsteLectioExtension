@@ -7,23 +7,21 @@ import { SiteHeader } from 'components/site-header';
 import { CalendarPage } from './pages/calendar';
 import { createEnableButton } from './content';
 import { AssignmentsPage } from './pages/assignments';
+import { LectioPage } from './pages/lectio';
+import useLocalState from 'components/useLocalState';
 
-const Main = (props: { page: JSX.Element }) => (
-    <ThemeProvider>
-        <SiteHeader />
-        <div className="prose dark:prose-invert marker:prose-li:text-black dark:marker:prose-li:text-white max-w-none">
-            {props.page}
-        </div>
-    </ThemeProvider>
-);
+export const SchoolContext = React.createContext<null>(null);
 
-const Basic = (props: { originalContent: Document }) => {
-    const content =
-        props.originalContent.querySelector('#contenttable')?.outerHTML ?? props.originalContent.body.innerHTML;
+const Main = (props: { page: JSX.Element }) => {
+    const [school, setSchool] = useLocalState<{ id: string; name: string } | null>('bedstelectio-school', null);
     return (
         <ThemeProvider>
-            <SiteHeader />
-            <div className="page-container" dangerouslySetInnerHTML={{ __html: content }} />
+            <SchoolContext.Provider value={{ school, setSchool }}>
+                <SiteHeader />
+                <div className="prose dark:prose-invert marker:prose-li:text-black dark:marker:prose-li:text-white max-w-none">
+                    {props.page}
+                </div>
+            </SchoolContext.Provider>
         </ThemeProvider>
     );
 };
@@ -36,8 +34,8 @@ if (localStorage.getItem('bedstelectio-disabled')) {
     console.info('Bedstelectio is disabled');
     console.info('To re-enable, click "Enable BedsteLectio" in the top menubar.');
 } else {
-    require('./content.css');
     if (isLocationSupported(document.location)) {
+        require('./content.css');
         const originalContent = document.cloneNode(true) as Document;
 
         // Clean up the page
@@ -59,6 +57,14 @@ if (localStorage.getItem('bedstelectio-disabled')) {
         const root = ReactDOM.createRoot(app);
         let page: JSX.Element;
         switch (toPageKey(document.location)) {
+            case 'lectioroot': {
+                location.href = 'https://www.lectio.dk/lectio/login_list.aspx';
+                break;
+            }
+            case 'lectio': {
+                page = <LectioPage originalContent={originalContent} />;
+                break;
+            }
             case 'home': {
                 page = <HomePage originalContent={originalContent} />;
                 break;
@@ -78,15 +84,5 @@ if (localStorage.getItem('bedstelectio-disabled')) {
         }
 
         root.render(<Main page={page} />);
-    } else if (!document.location.pathname.includes('/login.aspx')) {
-        require('./content.css');
-        const originalContent = document.cloneNode(true) as Document;
-        const body = document.createElement('body');
-        const app = document.createElement('div');
-        app.id = 'bedstelectio-app';
-        body.append(app);
-        document.body.replaceWith(body);
-        const root = ReactDOM.createRoot(app);
-        root.render(<Basic originalContent={originalContent} />);
     }
 }
