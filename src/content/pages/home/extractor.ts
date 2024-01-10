@@ -1,9 +1,10 @@
 import { DateTime } from 'luxon';
 import { extractLesson } from '../calendar/extractor';
 import { stringToColor } from 'utils/color';
-import { constructInterval } from 'utils/datetime';
+import { constructDateTime, constructInterval } from 'utils/datetime';
 import { extractSchool } from 'utils/page';
 import { toTitleCase } from 'utils/string';
+import { af } from 'utils/array';
 
 export const extractLessons = (html: Document) => {
     const elements = Array.from<HTMLAnchorElement>(
@@ -16,7 +17,8 @@ export const extractLessons = (html: Document) => {
             textColor: stringToColor(lesson.hold ?? '', 100, 30).string,
             class: lesson.hold ?? '',
             id: lesson.absid,
-            link: `/lectio/${extractSchool(document.location.pathname)}/aktivitet/aktivitetforside2.aspx?absid=${lesson.absid}`,
+            link: `/lectio/${extractSchool(document.location.pathname)}/aktivitet/aktivitetforside2.aspx?absid=${lesson.absid
+                }`,
             interval: constructInterval(lesson.tidspunkt),
             name: lesson.navn?.replace('prv.', 'prøve').replace('mdt.', 'mundtlig').replace('skr.', 'skriftlig') ?? '',
             note: lesson.andet ?? '',
@@ -76,4 +78,58 @@ export const extractNews = (html: Document) => {
     }
 
     return news;
+};
+
+export const extractHomework = (html: Document) => {
+    const homeworkRows = af(
+        html.querySelectorAll<HTMLTableRowElement>('table#s_m_Content_Content_LektierOversigt > tbody > tr'),
+    );
+
+    const homework: { link: string; title: string; body: string; date: DateTime }[] = [];
+    for (const row of homeworkRows) {
+        const body = row.title;
+        const info = row.querySelector<HTMLTableCellElement>('td.infoCol')?.querySelector('a');
+        const title = info?.textContent ?? '';
+        const link = info?.href ?? '';
+        const date = constructDateTime(row.querySelector<HTMLTableCellElement>('td.timeCol')?.title ?? '');
+        homework.push({ link, title, body, date });
+    }
+
+    return homework;
+};
+
+export const extractMessages = (html: Document) => {
+    const messageRows = af(
+        html.querySelectorAll<HTMLTableRowElement>('table#s_m_Content_Content_BeskederInfo > tbody > tr'),
+    );
+
+    const messages: { link: string; title: string; sender: string; date: DateTime }[] = [];
+    for (const row of messageRows) {
+        const info = row.querySelector<HTMLTableCellElement>('td.infoCol')?.querySelector('a');
+        const title = info?.textContent ?? '';
+        const link = info?.href ?? '';
+        const sender = row.querySelector<HTMLTableCellElement>('td.nameCol')?.textContent ?? '';
+        const date = constructDateTime(row.querySelector<HTMLTableCellElement>('td.timeCol')?.title ?? '');
+        messages.push({ link, title, sender, date });
+    }
+
+    return messages;
+};
+
+export const extractDocuments = (html: Document) => {
+    const documentsRows = af(
+        html.querySelectorAll<HTMLTableRowElement>('table#s_m_Content_Content_DokumenterInfo > tbody > tr'),
+    );
+
+    const documents: { link: string; title: string; owner: string; date: DateTime }[] = [];
+    for (const row of documentsRows) {
+        const info = row.querySelector<HTMLTableCellElement>('td.infoCol')?.querySelector('a');
+        const title = info?.textContent ?? '';
+        const link = info?.href ?? '';
+        const owner = row.querySelector<HTMLTableCellElement>('td.nameCol')?.querySelector('span')?.title ?? '';
+        const date = constructDateTime(row.querySelector<HTMLTableCellElement>('td.timeCol')?.title ?? '');
+        documents.push({ link, title, owner, date });
+    }
+
+    return documents;
 };

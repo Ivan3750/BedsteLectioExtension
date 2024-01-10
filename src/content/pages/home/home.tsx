@@ -4,12 +4,18 @@ import { DateTime } from 'luxon';
 import { linkTo } from 'utils/page';
 import { Tabs, useTabs } from 'components/tabs';
 import { Timeline, TimelineItem } from 'components/timeline';
-import { extractLessons, extractNews } from './extractor';
+import { extractDocuments, extractHomework, extractLessons, extractMessages, extractNews } from './extractor';
+import { Card, CardDescription, CardHeader, CardTitle } from 'components/card';
+import { RelativeTime } from 'components/relative-time';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from 'components/tooltip';
 
 export const HomePage = (props: { originalContent: Document }) => {
     const content = props.originalContent;
     const lessons = extractLessons(content);
     const news = extractNews(content);
+    const homework = extractHomework(content);
+    const messages = extractMessages(content);
+    const documents = extractDocuments(content);
 
     const [tabProps] = useState({
         tabs: lessons.map((day) => ({
@@ -86,7 +92,29 @@ export const HomePage = (props: { originalContent: Document }) => {
                         </a>
                     </div>
                     <div className="block overflow-y-auto">
-                        <p>Ingen kommende lektier.</p>
+                        {homework.length > 0 ? (
+                            homework.map((entry) => (
+                                <TooltipProvider key={entry.link}>
+                                    <Tooltip>
+                                        <TooltipTrigger asChild>
+                                            <a href={entry.link} className="!no-underline">
+                                                <Card className="mt-5">
+                                                    <CardHeader>
+                                                        <CardTitle>{entry.title}</CardTitle>
+                                                        <CardDescription>
+                                                            <RelativeTime date={entry.date.toJSDate()} />
+                                                        </CardDescription>
+                                                    </CardHeader>
+                                                </Card>
+                                            </a>
+                                        </TooltipTrigger>
+                                        <TooltipContent>{entry.body}</TooltipContent>
+                                    </Tooltip>
+                                </TooltipProvider>
+                            ))
+                        ) : (
+                            <p>Ingen kommende lektier.</p>
+                        )}
                     </div>
                 </div>
                 <div className="lg:col-span-1 lg:row-start-2 h-[50vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
@@ -97,7 +125,22 @@ export const HomePage = (props: { originalContent: Document }) => {
                         </a>
                     </div>
                     <div className="block overflow-y-auto">
-                        <p>Ingen ulæste beskeder.</p>
+                        {messages.length > 0 ? (
+                            messages.map((message) => (
+                                <a href={message.link} className="!no-underline" key={message.link}>
+                                    <Card className="mt-5">
+                                        <CardHeader>
+                                            <CardTitle>{message.title}</CardTitle>
+                                            <CardDescription>
+                                                {message.sender} • <RelativeTime date={message.date.toJSDate()} />
+                                            </CardDescription>
+                                        </CardHeader>
+                                    </Card>
+                                </a>
+                            ))
+                        ) : (
+                            <p>Ingen ulæste beskeder.</p>
+                        )}
                     </div>
                 </div>
                 <div className="lg:col-span-1 lg:row-start-2 h-[50vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
@@ -108,7 +151,22 @@ export const HomePage = (props: { originalContent: Document }) => {
                         </a>
                     </div>
                     <div className="block overflow-y-auto">
-                        <p>Ingen nye dokumenter.</p>
+                        {documents.length > 0 ? (
+                            documents.map((document) => (
+                                <a href={document.link} className="!no-underline" key={document.link}>
+                                    <Card className="mt-5">
+                                        <CardHeader>
+                                            <CardTitle>{document.title}</CardTitle>
+                                            <CardDescription>
+                                                {document.owner} • <RelativeTime date={document.date.toJSDate()} />
+                                            </CardDescription>
+                                        </CardHeader>
+                                    </Card>
+                                </a>
+                            ))
+                        ) : (
+                            <p>Ingen nye dokumenter.</p>
+                        )}
                     </div>
                 </div>
             </div>
