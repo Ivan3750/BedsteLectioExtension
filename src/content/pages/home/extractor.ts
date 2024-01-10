@@ -50,6 +50,23 @@ export const extractNews = (html: Document) => {
     );
     const news: Array<{ heading: string; body: string }> = [];
 
+    const examRows = af(
+        html.querySelectorAll<HTMLTableRowElement>('table#s_m_Content_Content_EksamenerInfo > tbody > tr'),
+    );
+    if (examRows.length > 0) {
+        const heading = 'Eksamener';
+        const body = examRows
+            .map((row) => {
+                const info = row.querySelector<HTMLTableCellElement>('td.infoCol')?.querySelector('a');
+                const title = info?.textContent ?? '';
+                const link = info?.href ?? '';
+                const date = constructDateTime(row.querySelector<HTMLTableCellElement>('td.timeCol')?.title ?? '');
+                return `<a href="${link}">${title} ${date.toRelative()}</a>`;
+            })
+            .join('<br>');
+        news.push({ heading, body });
+    }
+
     for (const tr of aktueltItems) {
         const content = tr.querySelector('td.infoCol span');
         if (!content) {
