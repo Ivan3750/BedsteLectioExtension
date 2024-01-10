@@ -9,6 +9,7 @@ import { createEnableButton } from './content';
 import { AssignmentsPage } from './pages/assignments';
 import { LectioPage } from './pages/lectio';
 import { SchoolProvider } from 'components/school-provider';
+import { HomeworkPage } from './pages/homework';
 
 const Main = (props: { page: JSX.Element }) => {
     return (
@@ -72,6 +73,10 @@ if (localStorage.getItem('bedstelectio-disabled')) {
             }
             case 'assignments': {
                 page = <AssignmentsPage originalContent={originalContent} />;
+                break;
+            }
+            case 'homework': {
+                page = <HomeworkPage originalContent={originalContent} />;
                 break;
             }
             default: {

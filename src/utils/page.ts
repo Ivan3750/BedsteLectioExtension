@@ -4,7 +4,7 @@ export const PAGES = {
     home: { name: 'Forside', link: '/lectio/$school/forside.aspx', supported: true },
     calendar: { name: 'Skema', link: '/lectio/$school/SkemaNy.aspx', supported: true },
     assignments: { name: 'Opgaver', link: '/lectio/$school/OpgaverElev.aspx', supported: true },
-    homework: { name: 'Lektier', link: '/lectio/$school/material_lektieoversigt.aspx', supported: false },
+    homework: { name: 'Lektier', link: '/lectio/$school/material_lektieoversigt.aspx', supported: true },
     absence: { name: 'Fravær', link: '/lectio/$school/subnav/fravaerelev_fravaersaarsager.aspx', supported: false },
     documents: { name: 'Dokumenter', link: '/lectio/$school/DokumentOversigt.aspx', supported: false },
     messages: { name: 'Beskeder', link: '/lectio/$school/beskeder2.aspx', supported: false },
