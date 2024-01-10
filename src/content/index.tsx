@@ -8,20 +8,17 @@ import { CalendarPage } from './pages/calendar';
 import { createEnableButton } from './content';
 import { AssignmentsPage } from './pages/assignments';
 import { LectioPage } from './pages/lectio';
-import useLocalState from 'components/useLocalState';
-
-export const SchoolContext = React.createContext<null>(null);
+import { SchoolProvider } from 'components/school-provider';
 
 const Main = (props: { page: JSX.Element }) => {
-    const [school, setSchool] = useLocalState<{ id: string; name: string } | null>('bedstelectio-school', null);
     return (
         <ThemeProvider>
-            <SchoolContext.Provider value={{ school, setSchool }}>
+            <SchoolProvider>
                 <SiteHeader />
                 <div className="prose dark:prose-invert marker:prose-li:text-black dark:marker:prose-li:text-white max-w-none">
                     {props.page}
                 </div>
-            </SchoolContext.Provider>
+            </SchoolProvider>
         </ThemeProvider>
     );
 };
@@ -55,7 +52,7 @@ if (localStorage.getItem('bedstelectio-disabled')) {
         body.append(app);
         document.body.replaceWith(body);
         const root = ReactDOM.createRoot(app);
-        let page: JSX.Element;
+        let page: JSX.Element = <div />;
         switch (toPageKey(document.location)) {
             case 'lectioroot': {
                 location.href = 'https://www.lectio.dk/lectio/login_list.aspx';
