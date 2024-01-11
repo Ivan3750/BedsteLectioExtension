@@ -104,6 +104,9 @@ export const extractHomework = (html: Document) => {
 
     const homework: { link: string; title: string; body: string; date: DateTime }[] = [];
     for (const row of homeworkRows) {
+        if (row.querySelector('td.norecord') !== null) {
+            continue;
+        }
         const body = row.title;
         const info = row.querySelector<HTMLTableCellElement>('td.infoCol')?.querySelector('a');
         const title = info?.textContent ?? '';
@@ -122,6 +125,9 @@ export const extractMessages = (html: Document) => {
 
     const messages: { link: string; title: string; sender: string; date: DateTime }[] = [];
     for (const row of messageRows) {
+        if (row.querySelector('td.norecord') !== null) {
+            continue;
+        }
         const info = row.querySelector<HTMLTableCellElement>('td.infoCol')?.querySelector('a');
         const title = info?.textContent ?? '';
         const link = info?.href ?? '';
@@ -140,6 +146,9 @@ export const extractDocuments = (html: Document) => {
 
     const documents: { link: string; title: string; owner: string; date: DateTime }[] = [];
     for (const row of documentsRows) {
+        if (row.querySelector('td.norecord') !== null) {
+            continue;
+        }
         const info = row.querySelector<HTMLTableCellElement>('td.infoCol')?.querySelector('a');
         const title = info?.textContent ?? '';
         const link = info?.href ?? '';
