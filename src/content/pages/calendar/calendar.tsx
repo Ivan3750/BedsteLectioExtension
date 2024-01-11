@@ -9,6 +9,8 @@ import { DateTime } from 'luxon';
 import { toTitleCase } from 'utils/string';
 import { cn } from 'utils/cn';
 import { linkToCalendarDate } from 'utils/page';
+import { Button } from 'components/button';
+import { ChevronsLeft, ChevronsRight } from 'lucide-react';
 
 export const CalendarPage = (props: { originalContent: Document }) => {
     const content = props.originalContent;
@@ -18,6 +20,31 @@ export const CalendarPage = (props: { originalContent: Document }) => {
 
     return (
         <div className="page-container">
+            <div className="mb-8 flex items-center justify-between">
+                <h1 className="!m-0">
+                    Skema (Uge {events.interval.start?.weekNumber}, {events.interval.start?.year})
+                </h1>
+                <div className="flex space-x-2">
+                    <Button
+                        onClick={() => {
+                            const current = events.interval.start ?? DateTime.now();
+                            const previous = current.minus({ weeks: 1 });
+                            document.location.href = linkToCalendarDate(document.location, previous);
+                        }}
+                    >
+                        <ChevronsLeft />
+                    </Button>
+                    <Button
+                        onClick={() => {
+                            const current = events.interval.start ?? DateTime.now();
+                            const previous = current.plus({ weeks: 1 });
+                            document.location.href = linkToCalendarDate(document.location, previous);
+                        }}
+                    >
+                        <ChevronsRight />
+                    </Button>
+                </div>
+            </div>
             <div className="!mt-0 not-prose">
                 <FullCalendar
                     ref={calendarRef}
@@ -42,11 +69,7 @@ export const CalendarPage = (props: { originalContent: Document }) => {
                     allDaySlot={false}
                     slotEventOverlap={false}
                     weekends={false}
-                    titleFormat={'Uge W, yyyy'}
-                    headerToolbar={{
-                        left: 'title',
-                        right: 'prev,next',
-                    }}
+                    headerToolbar={false}
                     dayHeaderContent={(renderProps) => {
                         const date = DateTime.fromJSDate(renderProps.date).setLocale('da');
                         const todayClasses = renderProps.isToday
@@ -71,21 +94,6 @@ export const CalendarPage = (props: { originalContent: Document }) => {
                     }}
                     dayHeaderFormat={{ weekday: 'long' }}
                     contentHeight={'auto'}
-                    // datesSet={(args) => {
-                    //     if (args.view.currentStart === events.interval?.start?.toJSDate() ?? DateTime.now().toJSDate())
-                    //         return;
-                    //     const date = DateTime.fromJSDate(args.view.currentStart);
-                    //     const url = linkToCalendarDate(window.location, date);
-                    //     console.log(
-                    //         window.location.pathname,
-                    //         date,
-                    //         events.interval?.start?.toJSDate() ?? DateTime.now().toJSDate(),
-                    //         url,
-                    //     );
-                    //     if (window.location.pathname !== url) {
-                    //         window.location.href = url;
-                    //     }
-                    // }}
                     nowIndicator
                 />
             </div>
