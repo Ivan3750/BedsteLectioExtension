@@ -30,7 +30,7 @@ if (localStorage.getItem('bedstelectio-disabled')) {
         ?.querySelector('div')
         ?.appendChild(button);
     console.info('Bedstelectio is disabled');
-    console.info('To re-enable, click "Enable BedsteLectio" in the top menubar.');
+    console.info('To re-enable, click "Aktivér BedsteLectio" in the top menubar.');
 } else {
     if (isLocationSupported(document.location)) {
         require('./content.css');

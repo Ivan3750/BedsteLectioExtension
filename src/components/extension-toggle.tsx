@@ -26,8 +26,7 @@ export const ExtensionToggle = () => {
                     <AlertDialogTitle>Deaktivér BedsteLectio</AlertDialogTitle>
                     <AlertDialogDescription>
                         Er du sikker på, at du vil deaktivere BedsteLectio i denne browser? Du kan altid aktivere
-                        BedsteLectio igen ved at køre{' '}
-                        <code>localStorage.removeItem(&quot;bedstelectio-disabled&quot;)</code> i konsollen.
+                        BedsteLectio igen ved at klikke knappen i Lectios meny-bar i toppen.
                     </AlertDialogDescription>
                 </AlertDialogHeader>
                 <AlertDialogFooter>
