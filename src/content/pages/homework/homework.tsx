@@ -3,6 +3,7 @@ import React from 'react';
 import { extractHomework } from './extractor';
 import { Card, CardDescription, CardHeader, CardTitle, CardFooter } from 'components/card';
 import { RelativeTime } from 'components/relative-time';
+import { DateTime } from 'luxon';
 
 export const HomeworkPage = (props: { originalContent: Document }) => {
     const content = props.originalContent;
@@ -22,10 +23,19 @@ export const HomeworkPage = (props: { originalContent: Document }) => {
                                         <CardHeader>
                                             <CardTitle>{entry.title}</CardTitle>
                                             <CardDescription>
-                                                <RelativeTime date={entry.date.toJSDate()} />
+                                                <RelativeTime
+                                                    date={
+                                                        entry.interval.start?.toJSDate() ?? DateTime.local().toJSDate()
+                                                    }
+                                                />
                                             </CardDescription>
                                         </CardHeader>
-                                        <CardFooter>{entry.description}</CardFooter>
+                                        <CardFooter>
+                                            <p
+                                                className="!m-0"
+                                                dangerouslySetInnerHTML={{ __html: entry.description }}
+                                            />
+                                        </CardFooter>
                                     </Card>
                                 </a>
                             </div>
