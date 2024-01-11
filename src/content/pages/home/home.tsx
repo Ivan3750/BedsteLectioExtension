@@ -84,7 +84,7 @@ export const HomePage = (props: { originalContent: Document }) => {
                         )}
                     </div>
                 </div>
-                <div className="lg:col-span-1 lg:row-start-2 h-[70vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
+                <div className="lg:col-span-1 lg:row-start-2 h-[70vh] 2xl:h-[50vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
                     <div className="mb-[0.3em] flex items-center justify-between">
                         <h1 className="mb-0">Lektier</h1>
                         <a href={linkTo(document.location, 'homework')}>
@@ -117,7 +117,7 @@ export const HomePage = (props: { originalContent: Document }) => {
                         )}
                     </div>
                 </div>
-                <div className="lg:col-span-1 lg:row-start-2 h-[70vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
+                <div className="lg:col-span-1 lg:row-start-2 h-[70vh] 2xl:h-[50vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
                     <div className="mb-[0.3em] flex items-center justify-between">
                         <h1 className="mb-0">Beskeder</h1>
                         <a href={linkTo(document.location, 'messages')}>
@@ -143,7 +143,7 @@ export const HomePage = (props: { originalContent: Document }) => {
                         )}
                     </div>
                 </div>
-                <div className="lg:col-span-1 lg:row-start-2 h-[70vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
+                <div className="lg:col-span-1 lg:row-start-2 h-[70vh] 2xl:h-[50vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
                     <div className="mb-[0.3em] flex items-center justify-between">
                         <h1 className="mb-0">Dokumenter</h1>
                         <a href={linkTo(document.location, 'documents')}>
