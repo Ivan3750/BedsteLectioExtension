@@ -22,14 +22,14 @@ export const ThemeToggle = () => {
                         setTheme('light');
                     }}
                 >
-                    Light
+                    Lys
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     onClick={() => {
                         setTheme('dark');
                     }}
                 >
-                    Dark
+                    Mørk
                 </DropdownMenuItem>
                 <DropdownMenuItem
                     onClick={() => {
