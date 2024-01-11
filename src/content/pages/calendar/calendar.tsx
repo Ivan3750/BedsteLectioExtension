@@ -25,6 +25,16 @@ export const CalendarPage = (props: { originalContent: Document }) => {
                     Skema (Uge {events.interval.start?.weekNumber}, {events.interval.start?.year})
                 </h1>
                 <div className="flex space-x-2">
+                    {events.interval?.start?.hasSame(DateTime.local(), 'week') ? null : (
+                        <Button
+                            onClick={() => {
+                                const today = DateTime.now();
+                                document.location.href = linkToCalendarDate(document.location, today);
+                            }}
+                        >
+                            I dag
+                        </Button>
+                    )}
                     <Button
                         onClick={() => {
                             const current = events.interval.start ?? DateTime.now();
