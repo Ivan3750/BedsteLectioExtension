@@ -11,6 +11,10 @@ import { cn } from 'utils/cn';
 import { linkToCalendarDate } from 'utils/page';
 import { Button } from 'components/button';
 import { ChevronsLeft, ChevronsRight } from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from 'components/tooltip';
+import { createRoot } from 'react-dom/client';
+import tippy from 'tippy.js';
+import { sanitize } from 'dompurify';
 
 export const CalendarPage = (props: { originalContent: Document }) => {
     const content = props.originalContent;
@@ -64,6 +68,12 @@ export const CalendarPage = (props: { originalContent: Document }) => {
                     initialDate={events.interval?.start?.toJSDate() ?? DateTime.now().toJSDate()}
                     events={events.events}
                     eventDidMount={(args) => {
+                        tippy(args.el, {
+                            content: sanitize(args.event.extendedProps.description, { USE_PROFILES: { html: true } }),
+                            placement: 'top',
+                            duration: 0,
+                            allowHTML: true,
+                        });
                         if (args.event.extendedProps.cancelled) args.el.classList.add('event-cancelled');
                     }}
                     windowResize={() => {
