@@ -11,8 +11,6 @@ import { cn } from 'utils/cn';
 import { linkToCalendarDate } from 'utils/page';
 import { Button } from 'components/button';
 import { ChevronsLeft, ChevronsRight } from 'lucide-react';
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from 'components/tooltip';
-import { createRoot } from 'react-dom/client';
 import tippy from 'tippy.js';
 import { sanitize } from 'dompurify';
 
