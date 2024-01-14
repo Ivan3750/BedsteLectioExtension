@@ -98,14 +98,14 @@ export const extractEvents = (html: Document) => {
     return { interval, events: parsedEvents };
 };
 
-const statusDictionary: Record<string, string> = {
+const statusDictionary = {
     s2brik: 'normal',
     s2cancelled: 'aflyst',
     s2changed: 'ændret',
     s2bgboxeksamen: 'eksamen',
 };
 
-const renameDictionary: Record<string, string> = { Lærere: 'Lærer', Lokaler: 'Lokale' };
+const renameDictionary = { Lærere: 'Lærer', Lokaler: 'Lokale' };
 
 export const extractLesson = (element: HTMLAnchorElement) => {
     const matches = /(?:absid|ProeveholdId)=(\d+)/.exec(element.href);
@@ -134,21 +134,21 @@ export const extractLesson = (element: HTMLAnchorElement) => {
     };
 
     const statusClass = element.classList[2];
-    lesson.status = statusClass in statusDictionary ? statusDictionary[statusClass] : statusClass;
+    lesson.status =
+        statusClass in statusDictionary ? statusDictionary[statusClass as keyof typeof statusDictionary] : statusClass;
 
     const tooltip = element.dataset.tooltip ?? '';
     const tooltipParts = tooltip.split('\n\n')[0].split('\n');
 
     for (const part of tooltipParts) {
-        const value = part.split(': ').slice(1).join(': ');
-        if (value !== '' && Object.keys(lesson).includes(part.split(': ')[0].toLowerCase())) {
-            let navn = part.split(': ')[0];
-            if (navn in renameDictionary) {
-                navn = renameDictionary[navn];
-            }
+        const parts = part.split(': ');
+        const key = (
+            parts[0] in renameDictionary ? renameDictionary[parts[0] as keyof typeof renameDictionary] : parts[0]
+        ).toLowerCase();
+        const value = parts.slice(1).join(': ');
 
-            // @ts-expect-error
-            lesson[navn.toLowerCase()] = value;
+        if (value !== '' && Object.keys(lesson).includes(key)) {
+            lesson[key as keyof typeof lesson] = value;
         } else if (
             /((?:[1-9]|[12]\d|3[01])\/(?:[1-9]|1[012])-(?:19|20)\d\d) ((?:[01]?\d|2[0-3]):[0-5]\d) til( (?:[1-9]|[12]\d|3[01])\/(?:[1-9]|1[012])-(?:19|20)\d\d)? ((?:[01]?\d|2[0-3]):[0-5]\d)/.test(
                 part,
