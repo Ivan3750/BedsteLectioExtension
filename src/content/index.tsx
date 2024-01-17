@@ -96,5 +96,13 @@ if (localStorage.getItem('bedstelectio-disabled')) {
         }
 
         root.render(<Main page={page} />);
+        // mutation observer to detect popup .ui-dialog
+        const observer = new MutationObserver(() => {
+            const dialog = document.querySelector('.ui-dialog');
+            if (dialog && dialog.querySelector('.ui-dialog-title')?.textContent?.includes('Session udløbet')) {
+                dialog.querySelector('.ui-dialog-buttonset')?.querySelector('button')?.click();
+            }
+        });
+        observer.observe(document.body, { attributes: true, childList: true, subtree: true });
     }
 }
