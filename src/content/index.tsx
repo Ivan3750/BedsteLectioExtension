@@ -96,5 +96,11 @@ if (localStorage.getItem('bedstelectio-disabled')) {
         }
 
         root.render(<Main page={page} />);
+    } else {
+        require('./lectio/base.css');
+        if ((localStorage.getItem('bedstelectio-theme') ?? '') === 'dark') {
+            // "system" theme TBA
+            require('./lectio/dark.css');
+        }
     }
 }

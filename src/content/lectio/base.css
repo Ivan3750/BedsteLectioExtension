@@ -1,0 +1,329 @@
+body {
+    font-size: 90% !important;
+    overflow-y: unset !important;
+}
+@media only screen and (min-width: 1000px) {
+    body {
+        overflow-y: scroll !important;
+    }
+}
+.ls-master-header-institution {
+    background-image: none !important;
+}
+.ls-master-header {
+    background-color: #dfe3e7 !important;
+    background: none;
+    height: 40px;
+}
+.lectioBorderBot {
+    background-color: #dfe3e7 !important;
+    background: none;
+    border: none;
+    height: 30px;
+}
+.lectioBorderLeft,
+.lectioBorderRight {
+    border: none !important;
+    box-shadow: 0px 0px 5px rgba(37, 51, 71, 0.55) !important;
+}
+.lectioToolbar .button A,
+DIV.button A,
+.lectioToolbar .button {
+    text-align: center;
+    color: #555 !important;
+    background: transparent;
+    border-bottom: 0px solid #DEE3E7;
+    cursor: pointer;
+    float: left;
+    -webkit-transition: 0.2s;
+    position: relative;
+    border: none !important;
+}
+header a[data-role="button"]:hover,
+header a.dropbtn.button:hover {
+    color: #49658E !important;
+    background: transparent !important;
+    -webkit-transition: 0.3s;
+    transition-duration: 0.3s;
+    border: none;
+    border-bottom: 2px solid !important;
+    text-decoration: none !important;
+}
+.dropdown-content a:hover {
+    background-color: #ddd !important;
+}
+div.buttonLink+a:hover {
+    text-decoration: none !important;
+}
+.ls-user-name:hover,
+.dashboardLinkHeaderText:hover,
+.dashboardItemTitle:hover,
+A[href]:not(.nolink):hover,
+.tooltip:hover {
+    background: none;
+    background-color: none;
+    color: #1b5c9e;
+    text-decoration: underline;
+}
+div.buttonlink>a {
+    color: #555 !important
+}
+div.buttonlink.ls-subnav-active>a,
+div.buttonlink.ls-subnav-active>a:hover {
+    color: #c74949 !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    background: none !important;
+    cursor: pointer;
+}
+.ls-subnav-container div.buttonlink>a:hover {
+    text-decoration: none !important;
+    color: #49658E !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    background-color: none !important;
+}
+.lectioToolbar .button A,
+.lectioToolbar .button A:active,
+BUTTON.button:active {
+    outline-style: none;
+}
+
+.ls-master-pageheader {
+    text-align: center;
+    position: relative;
+    left: 110px;
+}
+div#s_m_HeaderContent_MainTitle,
+.ls-subnav1,
+.ls-subnav2 {
+    text-align: center !important;
+}
+.ls-master-pageheader .thumber IMG {
+    display: none;
+}
+#s_m_searchinputfield {
+    width: 0px !important;
+    background-color: #F8F8F8 !important;
+    transition: width 1s;
+    margin-top: 0.4em !important;
+    border: none !important;
+}
+div.floatRight:hover #s_m_searchinputfield {
+    width: 150px !important;
+}
+#s_m_searchinputfield:focus {
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+div .island,
+table .island {
+    border: none;
+    box-shadow: 0px 0px 5px rgba(37, 51, 71, 0.55);
+    background: #fff;
+}
+/*  Headers  */
+div .island .islandHeaderContainer,
+.s2weekHeader TD,
+.ls-table-absence .activityHeader>td,
+table .island .islandHeaderContainer,
+.lectioToolbar,
+.ui-datepicker-header,
+.activityHeader {
+    background: rgb(214, 217, 218);
+    border-style: none none solid;
+    border-image: initial;
+    border-bottom: 1px solid rgb(185, 191, 200);
+    border-radius: 3px;
+}
+/*  Invsisble headers (background)  */
+/* div.lectioToolbar.lectioBorder.noWrap,
+#s_m_Content_Content_EditFolderBtn
+                    {
+                        background:transparent;background-color:transparent;border:none;
+                    } */
+TABLE.island .islandContentLeft,
+TABLE.island .islandContentRight,
+tr.textTop.nowrap.lectioBorderBot {
+    background: transparent !important;
+    background-color: transparent !important;
+}
+.ui-datepicker.ui-widget.ui-widget-content.ui-helper-clearfix.ui-corner-all.ui-datepicker-multi.ui-datepicker-multi-3 {
+    z-index: 2 !important;
+}
+/* Forside school list */
+.buttonHeader a {
+    background: #555555 !important;
+    box-shadow: 1px 1px 1px none;
+    border: 1px solid #555555;
+    padding: 4px 7px;
+    min-height: 15px;
+    line-height: 14px;
+    min-width: 30px;
+    white-space: normal;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px !important;
+    color: #EBEEEE !important;
+    margin: 0 0 2px;
+    cursor: pointer;
+    -webkit-transition: 200ms ease-in-out, width 0ms, height 0ms;
+}
+.buttonHeader A:hover {
+    background: #808080 !important;
+    color: #444 !important;
+    text-decoration: none !important;
+    text-align: center !important;
+    border: 1px solid transparent !important;
+    line-height: 1.1 !important;
+}
+div.button a:not([href*="/"]):not(#s_m_mastersearchbtn):not(#m_mastersearchbtn):not(#snow):not(.dropbtn.button) {
+    background: #d6d9da !important;
+    border-radius: 3px;
+}
+div.button:hover a:not([href*="/"]):not(#s_m_mastersearchbtn):not(#m_mastersearchbtn):not(#snow):not(.dropbtn.button) {
+    text-decoration: none !important;
+    color: black !important;
+}
+td.nowrap.attention.tooltip.timeCol:hover {
+    color: #b80000 !important;
+}
+#s_m_Content_Content_ElevOpgaveAfleveringer tr:hover {
+    text-decoration: none !important;
+}
+td.infoCol:hover a span {
+    text-decoration: none !important;
+}
+#s_m_Content_Content_SFTabStudentAbsenceDataTable>tbody>tr:hover td,
+#s_m_Content_Content_ExerciseGV>tbody>tr:hover td,
+#s_m_Content_Content_BdBookLoanGV>tbody>tr:hover td,
+#s_m_Content_Content_DocumentGridView_ctl00>tbody>tr:hover td,
+#s_m_Content_Content_threadGV_ctl00>tbody>tr:hover td {
+    background: #e5e8e9 !important;
+    border: none !important;
+}
+#s_m_Content_Content_threadGV_ctl00>tbody>tr.unread {
+    background: #edefef;
+}
+.TreeNode-title {
+    color: #475968;
+    font-size: 110%;
+}
+.TreeNode-container:hover {
+    background: #f1efef;
+}
+#s_m_Content_Content_ElevOpgaveAfleveringer>tbody>tr:hover>td,
+#s_m_Content_Content_LektierOversigt>tbody>tr:hover>td,
+#s_m_Content_Content_DokumenterInfo>tbody>tr:hover>td,
+#s_m_Content_Content_BeskederInfo>tbody>tr:hover>td {
+    background: #f1efef;
+    border-radius: 5px;
+}
+#s_m_Content_Content_undervisningIsland_pa *:not(.islandHeader),
+#s_m_Content_Content_kommIsland_pa *:not(i) {
+    color: black;
+}
+.s2skemabrikInnerContainer * {
+    user-select: none;
+}
+
+.dropdown-content {
+    top: 28px !important;
+}
+.topnav {
+    background-color: #333;
+    overflow: hidden;
+}
+.topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+}
+.topnav a:hover {
+    background-color: #ddd;
+    color: black;
+}
+.active {
+    background-color: #4CAF50;
+    color: white;
+}
+.topnav .icon {
+    display: none;
+}
+@media screen and (max-width: 600px) {
+    .topnav a:not(:first-child) {
+        display: none;
+    }
+    .topnav a.icon {
+        float: right;
+        display: block;
+    }
+}
+@media screen and (max-width: 600px) {
+    .topnav.responsive {
+        position: relative;
+    }
+    .topnav.responsive a.icon {
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+    .topnav.responsive a {
+        float: none;
+        display: block;
+        text-align: left;
+    }
+}
+/*New islands front page*/
+#islandDOMparent {
+    background-color: #fff !important;
+}
+#islandDOMchild,
+#islandDOMchildChild {
+    border: none !important;
+    box-shadow: none !important
+}
+#islandDOMchildHeader {
+    background: transparent !important;
+}
+#searchQuery-result a {
+    display: grid;
+    background: #555555 !important;
+    box-shadow: 1px 1px 1px none;
+    border: 1px solid #555555;
+    padding: 4px 7px;
+    min-height: 15px;
+    line-height: 14px;
+    min-width: 30px;
+    white-space: normal;
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px !important;
+    color: #EBEEEE !important;
+    margin: 0 0 2px;
+    cursor: pointer;
+    -webkit-transition: 200ms ease-in-out, width 0ms, height 0ms;
+}
+#searchQuery-div hr {
+    border-bottom: 2px solid #555555;
+    margin: 10px;
+}
+#searchQuery-input {
+    border-radius: 5px;
+    width: 200px;
+    height: 20px;
+    margin-bottom: 10px;
+    background: #555555;
+    border: 1px solid #666666;
+    color: white;
+    font-size: 100%;
+}
+#searchQuery-input:focus {
+    outline-offset: 0px !important;
+    outline: none !important;
+}

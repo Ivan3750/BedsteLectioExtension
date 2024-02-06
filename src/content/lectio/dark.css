@@ -1,0 +1,569 @@
+body,
+BODY.ls-container,
+DIV.form,
+DIV.ls-container,
+DIV.panel,
+TABLE.form,
+TABLE.ls-container,
+TABLE.panel,
+TD.ls-container,
+.ls-std-island-layout-ltr {
+    background-color: #242424 !important;
+    color: white !important;
+}
+.ls-master-container1,
+.ls-master-container2 {
+    background: #242424;
+}
+.ls-texteditor-container,
+#homeworkContentContainer *,
+#homeworkContentContainer,
+.lectioTabToolbar .button a,
+.ls-island4.ls-toccontent-container,
+#islandDOMparent,
+.lectioTabContainer .lectioTabContent,
+.list TR,
+.ls-table-layout1 TR,
+.list,
+.ls-table-layout1,
+.timehorizontal td,
+.yeartable th,
+.timevertical .month,
+.phase a,
+.timehorizontal td,
+.yeartable th,
+.island.mediumBlockHeight .islandContent,
+.mediumBlockHeight,
+.defaultBlockHeight,
+.island.defaultBlockHeight .islandContent,
+.s2dayHeaderSimple,
+.defaultBlockHeight,
+.island.defaultBlockHeight .islandContent,
+TABLE.ShowMessage2Inner TR TD,
+.message-thread-container,
+.s2dayHeader,
+.s2dayHeader td,
+.s2infoHeader,
+.ls-tocContainer-outer,
+.toggleTocElementImg,
+.lectioToolbar *,
+.lectioToolbar,
+.island,
+.activityHeader,
+th.islandHeader,
+th.islandHeaderRight,
+.ls-questionnaire-question,
+.ls-tabs2 .lectioTabContent {
+    background: #3f3f3f !important;
+    box-shadow: none !important;
+}
+.ls-texteditor-container * {
+    background: #3f3f3f !important;
+}
+section.island.smallBlock.defaultBlockHeight .islandHeaderContainer {
+    background: #3f3f3f !important;
+}
+.message-thread-message,
+.separationCell,
+.separationCell TD,
+.separationCell TH {
+    background-color: #5e5e5e !important;
+}
+.list,
+.ls-table-layout1,
+.island.mediumBlockHeight .islandContent,
+.mediumBlockHeight,
+.defaultBlockHeight,
+.island.defaultBlockHeight .islandContent,
+.s2dayHeaderSimple,
+.ls-float-content > .island,
+.ls-float-content > .island2,
+.ls-float-content > .island3,
+.ls-float-content > .ls-float-content-element .lectioBorderBot,
+.lectioBorderBot TD,
+.lectioBorderBot TH,
+.ls-questionnaire-question {
+    box-shadow: none !important;
+    border-color: #3f3f3f !important;
+    color: white !important;
+}
+div .island .islandHeaderContainer,
+.s2weekHeader TD,
+.ls-table-absence .activityHeader > td,
+table .island .islandHeaderContainer {
+    background: #656565 !important;
+}
+.islandHeader,
+.ls-table-absence .activityHeader > td {
+    color: white !important;
+}
+.maintitle,
+.ls-paper-section-heading,
+.ls-master-header-institution {
+    color: #d5d6d2 !important;
+}
+textarea.activity-note {
+    color: white !important;
+}
+.ls-subnav-container div.buttonlink>a:hover {
+    text-decoration: none !important;
+    color: #4f97e1 !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    background-color: none !important;
+}
+.ls-master-header,
+.lectioBorderBot {
+    background: #3f3f3f !important;
+    border-bottom: none !important;
+}
+.lectioToolbar .button A,
+DIV.button A,
+.lectioToolbar .button {
+    color: white !important;
+}
+a#m_ForsideLink:hover,
+a#m_defaultaspxLink:hover,
+a#m_LoginOutLink:hover,
+a#m_kontaktLink:hover,
+a#m_HelpLink:hover,
+a#m_mastersearchbtn:hover,
+a#m_mastersearchbtn:hover,
+a#s_m_ForsideLink:hover,
+a#s_m_defaultaspxLink:hover,
+a#s_m_LoginOutLink:hover,
+a#s_m_kontaktLink:hover,
+a#s_m_HelpLink:hover,
+a#s_m_mastersearchbtn:hover,
+a#m_Content_submitbtn2:hover,
+BUTTON.button:hover {
+    color: #829ec7 !important;
+    border-color: #829ec7;
+}
+#s_m_Content_Content_skemaIsland_pa .s2skemabrikcontent {
+    color: white !important;
+    background-color: #656565 !important;
+}
+
+#s_m_Content_Content_SearchTb_tb,
+#s_m_Content_Content_SPSearchText_tb,
+#s_m_Content_Content_SkemaNyMedNavigation_datePicker_tb,
+.dashboardLinkHeaderInfoText,
+.tooltip,
+div.s2skemabrikcontent,
+.s2infoHeader *,
+.s2timeline,
+.maintitle,
+a:-webkit-any-link,
+.ls-master-header-institution,
+.ls-master-footer,
+h4 *,
+h2 *,
+h3 *,
+h5 *,
+h1 *,
+h6 *,
+h4,
+h2,
+h3,
+h5,
+h1,
+h6,
+p.black,
+.s2skema td,
+A.s2skemabrik,
+.island *,
+.island .linklist li a,
+#rdataisbeautiful {
+    color: white !important;
+}
+
+button.toolBarContainer,
+footer,
+a#m_ForsideLink,
+a#m_defaultaspxLink,
+a#m_LoginOutLink,
+a#m_kontaktLink,
+a#m_HelpLink,
+a#m_mastersearchbtn,
+a#m_mastersearchbtn,
+a#s_m_ForsideLink,
+a#s_m_defaultaspxLink,
+a#s_m_LoginOutLink,
+a#s_m_kontaktLink,
+a#s_m_HelpLink,
+a#s_m_mastersearchbtn,
+a#m_Content_submitbtn2,
+.yearselect,
+.s2weekHeader TD,
+.activityHeader,
+TD.activityHeader,
+.lectioTabContainer .lectioTabToolbar .button A,
+BUTTON.button,
+INPUT.button,
+.ls-button-disabled-hover,
+BUTTON.button,
+INPUT.button {
+    border-color: #242424 !important;
+}
+BUTTON.button {
+    background: none !important;
+    color: white !important;
+    border: none;
+}
+BUTTON.button:hover:not(.dropbtn) {
+    background-color: #656565 !important;
+}
+a#dropdownA {
+    color: white !important;
+}
+a#dropdownA:hover {
+    background-color: #5e5e5e !important;
+}
+.dropdown-content,
+div.dropdown-content > a {
+    background-color: #3f3f3f !important;
+    color: white !important;
+}
+div.dropdown-content > a:hover {
+    text-decoration: none !important;
+    background-color: #555555 !important;
+}
+.popupDropdown,
+.dropdown:hover + .verticalLine {
+    background: none !important;
+    border-left: none !important;
+}
+p#dragMe {
+    color: black;
+}
+.dayNoteShow {
+    background: none !important;
+    color: white;
+}
+.attention {
+    color: red !important;
+}
+div.s2skemabrikInnerContainer {
+    background-color: #656565 !important;
+    background: #656565 !important;
+}
+.s2skema,
+.s2skemabrikcontainer {
+    background-color: #242424 !important;
+}
+.s2module-bg {
+    background-color: #3f3f3f !important;
+}
+.s2module-info {
+    color: white !important;
+}
+a.s2changed div.s2skemabrikInnerContainer,
+.s2skemabrikcontent.small.s2changed {
+    background: #598e59 !important;
+}
+.s2skema .s2infoHeader,
+.s2skema .s2infoHeader > div {
+    background-color: #3f3f3f !important;
+}
+a.s2cancelled div.s2skemabrikInnerContainer,
+.s2skemabrikcontent.small.s2cancelled {
+    background-color: #d67c7c !important;
+}
+.lec-context-menu {
+    background-color: #313131 !important;
+}
+div.buttonlink > a {
+    color: white !important;
+}
+div.exercise > a {
+    color: #444 !important;
+}
+div.buttonlink > a:hover {
+    color: #829ec7 !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    background: none !important;
+}
+div.buttonlink.ls-subnav-active > a,
+div.buttonlink.ls-subnav-active > a:hover {
+    color: #257ed8 !important;
+    border: none !important;
+    border-bottom: 2px solid !important;
+    background: none !important;
+    cursor: pointer;
+}
+#s_m_Content_Content_threadGV_ctl00 tr:hover * {
+    background-color: #444 !important;
+}
+input {
+    color: black !important;
+}
+INPUT[Type='Text']:focus,
+TEXTAREA:focus {
+    box-shadow: none !important;
+}
+.ac_results.ac_supplementary_hidden *,
+.ac_results.ac_supplementary_hidden {
+    background-color: #3f3f3f !important;
+}
+.lectioBorder {
+    border: none !important;
+}
+#s_m_searchinputfield {
+    width: 0px !important;
+    background-color: #606060 !important;
+    transition: width 1s;
+    margin-top: 0.4em !important;
+    border: none !important;
+    color: white !important;
+}
+div.floatRight:hover #s_m_searchinputfield {
+    width: 150px !important;
+}
+div.buttonHeader a {
+    background: #242424 !important;
+    border: none !important;
+}
+div.buttonHeader:hover a:hover {
+    background: #383838 !important;
+    color: white !important;
+    text-decoration: none !important;
+}
+.buttonHeader A:hover {
+    background: #242424 !important;
+    border: none !important;
+}
+#s_m_Content_Content_DocumentGridView_ctl00 tr:hover {
+    background: #383838 !important;
+    color: white !important;
+    text-decoration: none !important;
+}
+select {
+    color: white !important;
+    margin-top: 4px !important;
+    background: #656565 !important;
+}
+div#ui-datepicker-div,
+div#ui-datepicker-div *,
+.ui-datepicker-header.ui-widget-header.ui-helper-clearfix.ui-corner-all * {
+    color: black !important;
+}
+.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front,
+.ui-dialog.ui-corner-all.ui-widget.ui-widget-content.ui-front * {
+    background: #3f3f3f !important;
+    color: white !important;
+}
+.dropdown-content.popupDropdown > a {
+    background: #242424 !important;
+}
+.dropdown-content.popupDropdown > a:hover {
+    background: #242424 !important;
+}
+input#m_Content_username2,
+input#password2 {
+    color: white !important;
+}
+textarea,
+input {
+    background: #656565 !important;
+    border: none !important;
+    border-radius: 3px;
+}
+textarea:focus {
+    outline: -webkit-focus-ring-color auto 0px !important;
+    outline-offset: 0px !important;
+}
+tr.fagtype > td,
+td.studieretningTekst,
+tr.valggruppe > td {
+    background-color: #656565 !important;
+}
+#krop .chosensubject,
+#krop .notchosensubject,
+#krop .bundTekst {
+    background: #3f3f3f !important;
+}
+#fixedBlock .floatBlock,
+.fixedBlock .floatBlock {
+    background: #3f3f3f !important;
+    color: white !important;
+}
+.timevertical .week {
+    border: 1px solid white !important;
+    background: #656565 !important;
+}
+.timevertical .month {
+    background: #656565 !important;
+}
+.table-col-fixed-right,
+.table-col-fixed-right {
+    background: #3f3f3f !important;
+}
+.timevertical .col {
+    background-image: repeating-linear-gradient(
+        0deg,
+        #656565,
+        #656565 23.8%,
+        hsla(208, 9%, 64%, 0.1) 25%,
+        #656565 26%,
+        #656565 48.8%,
+        hsla(208, 9%, 64%, 0.1) 50%,
+        #656565 51%,
+        #656565 73.8%,
+        hsla(208, 9%, 64%, 0.1) 75%,
+        #656565 76%,
+        #656565 98.8%,
+        hsla(208, 9%, 64%, 0.5)
+    ) !important;
+}
+div.exercise > a {
+    color: white !important;
+}
+#s_m_Content_Content_skemaIsland_pa .s2skemabrikcontent.s2changed,
+#s_m_Content_Content_skemaIsland_pa .s2skemabrikcontent.s2changed > span {
+    color: #444 !important;
+}
+#s_m_Content_Content_skemaIsland_pa .s2skemabrikcontent.s2cancelled,
+#s_m_Content_Content_skemaIsland_pa .s2skemabrikcontent.s2cancelled > span {
+    color: #444 !important;
+}
+.header {
+    background: #3f3f3f !important;
+}
+#zoomLevel,
+#adgangskode,
+#brugernavn,
+#pinCode {
+    color: white !important;
+}
+.far.fa-sad-cry {
+    color: black !important;
+}
+div#schoolsdiv {
+    background: #3f3f3f !important;
+}
+.ls-hr-solid-thick {
+    border-color: #242424 !important;
+}
+div.button a:not([href*='/']):not(.dropbtn.button) {
+    background: #656565 !important;
+    border-radius: 3px;
+}
+.exercisemissing {
+    background-color: red;
+}
+.exercisewait {
+    background-color: green;
+}
+td > span > a[href^='/lectio']:hover,
+.tooltip:hover {
+    color: #dedede !important;
+}
+#s_m_Content_Content_SFTabStudentAbsenceDataTable > tbody > tr:hover td,
+#s_m_Content_Content_ExerciseGV > tbody > tr:hover td,
+#s_m_Content_Content_BdBookLoanGV > tbody > tr:hover td,
+#s_m_Content_Content_DocumentGridView_ctl00 > tbody > tr:hover td,
+#s_m_Content_Content_threadGV_ctl00 > tbody > tr:hover td {
+    background: #444 !important;
+    border: 1px solid #444 !important;
+}
+#multiAbsence-button,
+#multiAbsence_selectAll_button {
+    background: #656565;
+}
+.contextmenuCustom.nolink {
+    color: white !important;
+}
+.contextmenuCustom.nolink:hover {
+    background: #444 !important;
+}
+div.button span.TreeNode-icon i {
+    color: white;
+    background: #656565 !important;
+}
+.TreeNode-title {
+    color: white;
+    font-size: 110%;
+}
+.TreeNode-container:hover {
+    background: #444;
+}
+#chart_container_header td {
+    background: #3f3f3f !important;
+}
+#chart_container_header input,
+#chart_container_header select {
+    color: white !important;
+    border: none;
+}
+#chart_container_header option {
+    background: #444;
+}
+#chart_container_header option:hover {
+    background: #555555;
+}
+table#headerTable,
+table.header > tbody {
+    background: #3f3f3f;
+    box-shadow: none;
+}
+table#headerTable * {
+    border: none;
+    color: white;
+}
+table#headerTable div.dropdown-content div:hover {
+    background: #999 !important;
+    color: #444;
+}
+table#headerTable {
+    box-shadow: none;
+}
+.s2bgbox {
+    border-top: 1px solid #3f3f3f !important;
+    border-bottom: 1px solid #3f3f3f !important;
+}
+#multiAbsence-reason option {
+    background-color: #3f3f3f;
+}
+.lectioTR * {
+    color: #3f3f3f !important;
+}
+#s_m_Content_Content_threadGV_ctl00 tr.unread {
+    background-color: #3f3f3f !important;
+}
+select option {
+    background-color: #656565 !important;
+}
+select option:hover {
+    background-color: #3f3f3f !important;
+}
+#generateGroup,
+#shuffleStudents,
+#pickStudent,
+#shuffleStudents {
+    background-color: #656565;
+}
+.ls-user-name,
+.dashboardLinkHeaderText,
+.dashboardItemTitle,
+a[href]:not(.nolink),
+.tooltip {
+    background: none;
+    background-color: none;
+    color: #257ed8;
+}
+.ls-user-name:hover,
+.dashboardLinkHeaderText:hover,
+.dashboardItemTitle:hover,
+a[href]:not(.nolink):hover,
+.tooltip:hover {
+    background: none;
+    background-color: none;
+    color: #4f97e1;
+    text-decoration: underline;
+}
+.fravaer_billede {
+   -webkit-filter: invert(1);
+   filter: invert(1);
+}
