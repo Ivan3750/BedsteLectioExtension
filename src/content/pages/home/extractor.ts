@@ -7,7 +7,7 @@ import { toTitleCase } from 'utils/string';
 import { af } from 'utils/array';
 
 export const extractLessons = (html: Document) => {
-    const elements = Array.from<HTMLAnchorElement>(
+    const elements = af<HTMLAnchorElement>(
         html.querySelectorAll("div#s_m_Content_Content_skemaIsland_pa > div[role='heading'] > a"),
     );
     const lessons = elements
@@ -45,9 +45,6 @@ export const extractLessons = (html: Document) => {
 };
 
 export const extractNews = (html: Document) => {
-    const aktueltItems = Array.from(
-        html.querySelectorAll('table#s_m_Content_Content_importantInfo >tbody > tr.DashWithScroll.textTop'),
-    );
     const news: Array<{ heading: string; body: string }> = [];
 
     const examRows = af(
@@ -67,6 +64,9 @@ export const extractNews = (html: Document) => {
         news.push({ heading, body });
     }
 
+    const aktueltItems = af(
+        html.querySelectorAll('table#s_m_Content_Content_importantInfo >tbody > tr.DashWithScroll.textTop'),
+    );
     for (const tr of aktueltItems) {
         const content = tr.querySelector('td.infoCol span');
         if (!content) {
