@@ -64,6 +64,22 @@ export const extractNews = (html: Document) => {
         news.push({ heading, body });
     }
 
+    const assignmentRows = af(
+        html.querySelectorAll<HTMLTableRowElement>('table#s_m_Content_Content_ElevOpgaveAfleveringer > tbody > tr'),
+    );
+    if (assignmentRows.length > 0) {
+        const assignments = assignmentRows
+            .map((row) => {
+                const info = row.querySelector<HTMLTableCellElement>('td.infoCol')?.querySelector('a');
+                const title = info?.textContent ?? '';
+                const link = info?.href ?? '';
+                const date = constructDateTime(row.querySelector<HTMLTableCellElement>('td.timeCol')?.title ?? '');
+                return `<a href="${link}">${title} ${date.toRelative()}</a>`;
+            })
+            .join('<br>');
+        news.push({ heading: 'Opgaver', body: assignments });
+    }
+
     const aktueltItems = af(
         html.querySelectorAll('table#s_m_Content_Content_importantInfo >tbody > tr.DashWithScroll.textTop'),
     );
