@@ -567,3 +567,7 @@ a[href]:not(.nolink):hover,
    -webkit-filter: invert(1);
    filter: invert(1);
 }
+
+.lc-display-fragment h1, .lc-display-fragment h2, .lc-display-fragment h3, .lc-display-fragment h4 {
+    color: white !important;
+}
