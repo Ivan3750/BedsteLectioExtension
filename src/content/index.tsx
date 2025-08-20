@@ -10,8 +10,10 @@ import { AssignmentsPage } from './pages/assignments';
 import { LectioPage } from './pages/lectio';
 import { SchoolProvider } from 'components/school-provider';
 import { HomeworkPage } from './pages/homework';
+import { DocumentPage } from './pages/documents';
 import { AbsenceOverviewPage } from './pages/absence/overview';
 import { AbsenceReasonsPage } from './pages/absence/reasons';
+import { TaskPage } from './pages/homework/task';
 
 const Main = (props: { page: JSX.Element }) => {
     return (
@@ -81,12 +83,20 @@ if (localStorage.getItem('bedstelectio-disabled')) {
                 page = <HomeworkPage originalContent={originalContent} />;
                 break;
             }
+            case 'task': {
+                page = <TaskPage originalContent={originalContent} />;
+                break;
+            }
             case 'absence_overview': {
                 page = <AbsenceOverviewPage originalContent={originalContent} />;
                 break;
             }
             case 'absence_reasons': {
                 page = <AbsenceReasonsPage originalContent={originalContent} />;
+                break;
+            }
+            case 'documents': {
+                page = <DocumentPage originalContent={originalContent} />;
                 break;
             }
             default: {

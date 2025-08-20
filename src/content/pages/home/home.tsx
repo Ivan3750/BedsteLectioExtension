@@ -49,7 +49,7 @@ export const HomePage = (props: { originalContent: Document }) => {
             <div className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-2 gap-4">
                 <div className="lg:col-span-2 h-[70vh] 2xl:h-[50vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
                     <div className="mb-[0.3em] flex items-center justify-between">
-                        <h1 className="mb-0">Skema</h1>
+                        <h1 className="mb-0 ">Skema</h1>
                         <a href={linkTo(document.location, 'calendar')}>
                             <ArrowRight />
                         </a>

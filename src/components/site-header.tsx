@@ -20,7 +20,7 @@ export const SiteHeader = () => (
             <div className="h-14 mr-4 flex">
                 <a className="mr-6 flex items-center space-x-2" href={linkTo(document.location, 'home')}>
                     <School />
-                    <span className="hidden font-bold sm:inline-block">BedsteLectio</span>
+                    <span className="hidden font-bold sm:inline-block">Lectio HTX</span>
                 </a>
                 {shouldOverridePath(document.location.pathname) ? null : (
                     <NavigationMenu>
