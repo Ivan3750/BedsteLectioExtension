@@ -1,14 +1,27 @@
 import { DateTime } from 'luxon';
 
 export const PAGES = {
-    home: { name: 'Forside', link: '/lectio/$school/forside.aspx', supported: true },
-    calendar: { name: 'Skema', link: '/lectio/$school/SkemaNy.aspx', supported: true },
-    assignments: { name: 'Opgaver', link: '/lectio/$school/OpgaverElev.aspx', supported: true },
-    homework: { name: 'Lektier', link: '/lectio/$school/material_lektieoversigt.aspx', supported: true },
+    home: { name: 'Forside', link: '/lectio/$school/forside.aspx', supported: true, inHeader: true },
+    calendar: { name: 'Skema', link: '/lectio/$school/SkemaNy.aspx', supported: true, inHeader: true },
+    assignments: { name: 'Opgaver', link: '/lectio/$school/OpgaverElev.aspx', supported: true, inHeader: true },
+    assignments_task: {
+        name: 'Opgaver',
+        link: '/lectio/$school/ElevAflevering.aspx',
+        supported: true,
+        inHeader: false,
+    },
+    homework: {
+        name: 'Lektier',
+        link: '/lectio/$school/material_lektieoversigt.aspx',
+        supported: true,
+        inHeader: true,
+    },
+    messege: { name: 'Messege', link: '/lectio/$school/beskeder2.aspx', supported: false, inHeader: false },
     task: {
         name: 'Lektier',
         link: '/lectio/$school/aktivitet/aktivitetforside2.aspx',
         supported: true,
+        inHeader: false,
     },
     absence_overview: {
         parent: 'Fravær',
@@ -16,6 +29,7 @@ export const PAGES = {
         description: 'Se en oversigt over dit almindelige- og skriftlige fravær. ',
         link: '/lectio/$school/subnav/fravaerelev.aspx',
         supported: true,
+        inHeader: true,
     },
     absence_reasons: {
         parent: 'Fravær',
@@ -23,9 +37,10 @@ export const PAGES = {
         description: 'Se dine fraværsårsager og administrer dem.',
         link: '/lectio/$school/subnav/fravaerelev_fravaersaarsager.aspx',
         supported: true,
+        inHeader: true,
     },
-    documents: { name: 'Dokumenter', link: '/lectio/$school/DokumentOversigt.aspx', supported: true },
-    messages: { name: 'Beskeder', link: '/lectio/$school/beskeder2.aspx', supported: false },
+    documents: { name: 'Dokumenter', link: '/lectio/$school/DokumentOversigt.aspx', supported: true, inHeader: true },
+    messages: { name: 'Beskeder', link: '/lectio/$school/beskeder2.aspx', supported: true, inHeader: true },
 };
 
 export const getPages = (location: Location) => {
@@ -41,15 +56,28 @@ export const getPages = (location: Location) => {
 
     return pages;
 };
+interface Page {
+    parent?: string;
+    name: string;
+    description?: string;
+    link: string;
+    supported: boolean;
+    inHeader?: boolean;
+}
 
 export const getNavbarPages = (location: Location) => {
-    const pages = getPages(location);
+    const pages: Record<string, Page> = getPages(location); // Типізуємо сторінки
     const parentedPages: Record<
         string,
         { name: string; link: string; children: { name: string; link: string; description?: string }[] }
     > = {};
-    for (const page of Object.keys(pages)) {
-        const pageData = pages[page as keyof typeof pages];
+
+    for (const pageKey of Object.keys(pages)) {
+        const pageData = pages[pageKey];
+
+        // Пропускаємо сторінки, які не мають inHeader
+        if (!pageData.inHeader) continue;
+
         if (pageData.parent !== undefined) {
             if (!parentedPages[pageData.parent]) {
                 parentedPages[pageData.parent] = { name: pageData.parent, link: '', children: [] };
@@ -60,7 +88,7 @@ export const getNavbarPages = (location: Location) => {
                 link: pageData.link,
             });
         } else {
-            parentedPages[page] = { ...pageData, children: [] };
+            parentedPages[pageKey] = { name: pageData.name, link: pageData.link, children: [] };
         }
     }
 

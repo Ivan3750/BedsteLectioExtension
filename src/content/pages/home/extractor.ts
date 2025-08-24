@@ -17,8 +17,9 @@ export const extractLessons = (html: Document) => {
             textColor: stringToColor(lesson.hold ?? '', 100, 30).string,
             class: lesson.hold ?? '',
             id: lesson.absid,
-            link: `/lectio/${extractSchool(document.location.pathname)}/aktivitet/aktivitetforside2.aspx?absid=${lesson.absid
-                }`,
+            link: `/lectio/${extractSchool(document.location.pathname)}/aktivitet/aktivitetforside2.aspx?absid=${
+                lesson.absid
+            }`,
             interval: constructInterval(lesson.tidspunkt),
             name: lesson.navn?.replace('prv.', 'prøve').replace('mdt.', 'mundtlig').replace('skr.', 'skriftlig') ?? '',
             note: lesson.andet ?? '',
@@ -32,8 +33,8 @@ export const extractLessons = (html: Document) => {
         const day = lesson.interval.start?.hasSame(DateTime.now(), 'day')
             ? 'I dag'
             : (lesson.interval.start?.hasSame(DateTime.now().plus({ days: 1 }), 'day')
-                ? 'I morgen'
-                : toTitleCase(lesson.interval.start?.toFormat('EEEE d/M') ?? '')) ?? 'N/A';
+                  ? 'I morgen'
+                  : toTitleCase(lesson.interval.start?.toFormat('EEEE d/M') ?? '')) ?? 'N/A';
         if (days.find((day_) => day_.label === day) === undefined) {
             days.push({ label: day, lessons: [lesson] });
         } else {
@@ -174,4 +175,18 @@ export const extractDocuments = (html: Document) => {
     }
 
     return documents;
+};
+
+export const extractName = (html: Document): string => {
+    const span = html.querySelector<HTMLSpanElement>('#s_m_HeaderContent_MainTitle span.ls-hidden-smallscreen');
+    if (!span || !span.textContent) return '';
+
+    // Прибираємо префікс "Eleven " якщо є
+    let text = span.textContent.trim().replace(/^Eleven\s+/i, '');
+
+    // Беремо перші два слова
+    const words = text.split(/\s+/).slice(0, 2);
+
+    // Видаляємо коми, дефіси та інші небуквені символи з кінця слів
+    return words.map((word) => word.replace(/[^a-zA-ZÀ-ÖØ-öø-ÿ-]/g, '')).join(' ');
 };

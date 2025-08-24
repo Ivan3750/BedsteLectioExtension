@@ -15,11 +15,11 @@ export const AbsenceReasonsPage = (props: { originalContent: Document }) => {
             <section className="mb-6">
                 <h2 className="font-medium mb-2">Samlet fravær</h2>
                 <div className="grid grid-cols-2 gap-4">
-                    <div className="rounded-xl border p-4 shadow-sm">
+                    <div className="rounded-xl bg-[white] dark:bg-black  border p-4 shadow-sm">
                         <p className="text-gray-500">Almindeligt fravær</p>
                         <p className="text-lg font-bold">{absence.summary.normal}</p>
                     </div>
-                    <div className="rounded-xl border p-4 shadow-sm">
+                    <div className="rounded-xl  bg-[white] dark:bg-black border p-4 shadow-sm">
                         <p className="text-gray-500">Skriftligt fravær</p>
                         <p className="text-lg font-bold">{absence.summary.written}</p>
                     </div>

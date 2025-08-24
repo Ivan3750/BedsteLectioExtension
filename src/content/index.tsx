@@ -7,6 +7,7 @@ import { SiteHeader } from 'components/site-header';
 import { CalendarPage } from './pages/calendar';
 import { createEnableButton } from './content';
 import { AssignmentsPage } from './pages/assignments';
+import { AssignmentTaskPage } from './pages/assignments_task';
 import { LectioPage } from './pages/lectio';
 import { SchoolProvider } from 'components/school-provider';
 import { HomeworkPage } from './pages/homework';
@@ -14,6 +15,7 @@ import { DocumentPage } from './pages/documents';
 import { AbsenceOverviewPage } from './pages/absence/overview';
 import { AbsenceReasonsPage } from './pages/absence/reasons';
 import { TaskPage } from './pages/homework/task';
+import { MessagesPage } from './pages/messege/messege';
 
 const Main = (props: { page: JSX.Element }) => {
     return (
@@ -79,6 +81,10 @@ if (localStorage.getItem('bedstelectio-disabled')) {
                 page = <AssignmentsPage originalContent={originalContent} />;
                 break;
             }
+            case 'assignments_task': {
+                page = <AssignmentTaskPage originalContent={originalContent} />;
+                break;
+            }
             case 'homework': {
                 page = <HomeworkPage originalContent={originalContent} />;
                 break;
@@ -97,6 +103,10 @@ if (localStorage.getItem('bedstelectio-disabled')) {
             }
             case 'documents': {
                 page = <DocumentPage originalContent={originalContent} />;
+                break;
+            }
+            case 'messege': {
+                page = <MessagesPage originalContent={originalContent} />;
                 break;
             }
             default: {

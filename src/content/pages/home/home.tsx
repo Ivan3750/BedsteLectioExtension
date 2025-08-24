@@ -4,7 +4,14 @@ import { DateTime } from 'luxon';
 import { linkTo } from 'utils/page';
 import { Tabs, useTabs } from 'components/tabs';
 import { Timeline, TimelineItem } from 'components/timeline';
-import { extractDocuments, extractHomework, extractLessons, extractMessages, extractNews } from './extractor';
+import {
+    extractDocuments,
+    extractHomework,
+    extractLessons,
+    extractMessages,
+    extractNews,
+    extractName,
+} from './extractor';
 import { Card, CardDescription, CardHeader, CardTitle } from 'components/card';
 import { RelativeTime } from 'components/relative-time';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from 'components/tooltip';
@@ -16,6 +23,7 @@ export const HomePage = (props: { originalContent: Document }) => {
     const homework = extractHomework(content);
     const messages = extractMessages(content);
     const documents = extractDocuments(content);
+    const myname = extractName(content);
 
     const [tabProps] = useState({
         tabs: lessons.map((day) => ({
@@ -46,6 +54,7 @@ export const HomePage = (props: { originalContent: Document }) => {
 
     return (
         <div className="page-container">
+            <div className="text-[50px] font-extrabold"> Hej {myname}! </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-2 gap-4">
                 <div className="lg:col-span-2 h-[70vh] 2xl:h-[50vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
                     <div className="mb-[0.3em] flex items-center justify-between">

@@ -1,67 +1,73 @@
-import { Interval } from 'luxon';
-import { extractLesson } from '../../calendar/extractor';
-import { constructInterval } from 'utils/datetime';
+import { DateTime } from 'luxon';
 
-export interface Task {
-    link: string;
+export type Task = {
     title: string;
-    note: string;
-    description: string; // HTML контент з посиланнями
+    description?: string;
+    note?: string;
+    link?: string;
     files: { name: string; url: string }[];
     externalLinks: { name: string; url: string }[];
-    interval: Interval | null;
-}
+    interval?: { start?: DateTime; end?: DateTime };
+    type: 'homework' | 'note'; // 👈 тепер маємо 2 типи
+};
 
-export const extractTask = (html: Document): Task | null => {
-    // --- Заголовок активності (сам урок) ---
-    const anchor = html.querySelector<HTMLAnchorElement>('.ls-section-title-heading a.s2skemabrik');
-    if (!anchor) return null;
+export function extractTask(document: Document): Task[] {
+    const tasks: Task[] = [];
 
-    const lesson = extractLesson(anchor);
-    const title = lesson.navn || lesson.hold || '';
+    // === Нотатки / опис (textarea) ===
+    const noteTextarea = document.querySelector<HTMLTextAreaElement>('#s_m_Content_Content_tocAndToolbar_ActNoteTB_tb');
+    if (noteTextarea && noteTextarea.value.trim()) {
+        tasks.push({
+            title: 'Beskrivelse / Noter',
+            description: noteTextarea.value.trim().replace(/\n/g, '<br/>'),
+            files: [],
+            externalLinks: [],
+            type: 'note',
+        });
+    }
 
-    // --- Note (textarea) ---
-    const note =
-        html.querySelector<HTMLTextAreaElement>('#s_m_Content_Content_tocAndToolbar_ActNoteTB_tb')?.value.trim() ?? '';
-
-    // --- Homework секція ---
-    const homeworkArticle = html.querySelector<HTMLElement>(
+    // === Домашка (artikler) ===
+    const articles = document.querySelectorAll<HTMLElement>(
         '#s_m_Content_Content_tocAndToolbar_inlineHomeworkDiv article',
     );
 
-    let description = '';
-    const files: { name: string; url: string }[] = [];
-    const externalLinks: { name: string; url: string }[] = [];
+    articles.forEach((article) => {
+        const titleEl = article.querySelector('h1, h2');
+        if (!titleEl) return;
 
-    if (homeworkArticle) {
-        // Прибираємо зайві картинки "doc-homework.auto"
-        homeworkArticle.querySelectorAll('img').forEach((img) => {
-            if (img.src.includes('/lectio/img/doc-homework.auto')) img.remove();
-        });
+        const task: Task = {
+            title: titleEl.textContent?.trim() ?? 'Ukendt opgave',
+            description: '',
+            files: [],
+            externalLinks: [],
+            type: 'homework',
+        };
 
-        // Збираємо файли
-        homeworkArticle.querySelectorAll<HTMLAnchorElement>('a[data-lc-display-linktype="file"]').forEach((a) => {
-            files.push({ name: a.textContent?.trim() || 'file', url: a.href });
-        });
+        // Note/description
+        const blockquote = article.querySelector('blockquote');
+        if (blockquote) {
+            task.description = blockquote.innerHTML.trim();
+        }
 
-        // Збираємо зовнішні посилання
-        homeworkArticle.querySelectorAll<HTMLAnchorElement>('a[data-lc-display-linktype="external"]').forEach((a) => {
-            externalLinks.push({ name: a.textContent?.trim() || 'link', url: a.href });
-        });
+        // Посилання у заголовку
+        const link = titleEl.querySelector('a');
+        if (link) {
+            const url = link.getAttribute('href') ?? '';
+            if (url.includes('/res/')) {
+                task.files.push({
+                    name: link.textContent?.trim() ?? 'Fil',
+                    url,
+                });
+            } else {
+                task.externalLinks.push({
+                    name: link.textContent?.trim() ?? 'Link',
+                    url,
+                });
+            }
+        }
 
-        // HTML контент
-        description = homeworkArticle.innerHTML.trim();
-    }
+        tasks.push(task);
+    });
 
-    const interval = lesson.tidspunkt ? constructInterval(lesson.tidspunkt) : null;
-
-    return {
-        link: anchor.href,
-        title,
-        note,
-        description,
-        files,
-        externalLinks,
-        interval,
-    };
-};
+    return tasks;
+}
