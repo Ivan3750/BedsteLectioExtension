@@ -20,9 +20,12 @@ export const CalendarPage = (props: { originalContent: Document }) => {
 
     const calendarRef = React.createRef<FullCalendar>();
 
+
+
     return (
         <div className="page-container">
-            <div className="mb-8 flex items-center justify-between">
+            {/*             <div> {JSON.stringify(events)}</div>
+ */}            <div className="mb-8 flex items-center justify-between">
                 <h1 className="!m-0">
                     Skema (Uge {events.interval.start?.weekNumber}, {events.interval.start?.year})
                 </h1>
@@ -59,6 +62,7 @@ export const CalendarPage = (props: { originalContent: Document }) => {
             </div>
             <div className="!mt-0 not-prose">
                 <FullCalendar
+                    key={events.interval?.start?.toISODate()}
                     ref={calendarRef}
                     locale={daLocale}
                     plugins={[luxonPlugin, timeGridPlugin]}

@@ -54,7 +54,7 @@ export const HomePage = (props: { originalContent: Document }) => {
 
     return (
         <div className="page-container">
-            <div className="text-[50px] font-extrabold"> Hej {myname}! </div>
+            <div className="text-[40px] text-[#000] font-extrabold"> Hej {myname}! </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 lg:grid-rows-2 gap-4">
                 <div className="lg:col-span-2 h-[70vh] 2xl:h-[50vh] flex flex-col bg-white dark:bg-dark rounded-2xl p-6">
                     <div className="mb-[0.3em] flex items-center justify-between">

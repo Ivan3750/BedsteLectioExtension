@@ -1,0 +1,205 @@
+{
+    "interval": {
+        "s": "2025-09-01T00:00:00.000+02:00",
+        "e": "2025-09-07T23:59:59.999+02:00",
+        "invalid": null,
+        "isLuxonInterval": true
+    },
+    "events": [
+        {
+            "color": "hsl(50, 100%, 90%)",
+            "textColor": "hsl(50, 100%, 30%)",
+            "end": "2025-09-08T09:30:00.000+02:00",
+            "extendedProps": {
+                "cancelled": false,
+                "description": "8/9-2025 08:00 til 09:30<br>Hold: 2025 daA-1gX<br>Lærer: Camilla Fangel Mikkelsen (cfm)<br>Lokale: 507"
+            },
+            "id": "72811510930",
+            "start": "2025-09-08T08:00:00.000+02:00",
+            "title": "2025 daA-1gX • 507",
+            "url": "/lectio/305/aktivitet/aktivitetforside2.aspx?absid=72811510930"
+        },
+        {
+            "color": "hsl(-210, 100%, 90%)",
+            "textColor": "hsl(-210, 100%, 30%)",
+            "end": "2025-09-08T11:20:00.000+02:00",
+            "extendedProps": {
+                "cancelled": false,
+                "description": "Gymnasiekørekort<br>8/9-2025 09:50 til 11:20<br>Hold: 2025 maB -1gX<br>Lærer: Emil Åsheim Ingvardsen (emin)<br>Lokale: 507<br><br>Lektier:\n- Studiekompetencer: Notatteknikker inklusiv papir og blyant [...]"
+            },
+            "id": "72811508850",
+            "start": "2025-09-08T09:50:00.000+02:00",
+            "title": "Gymnasiekørekort • 507",
+            "url": "/lectio/305/aktivitet/aktivitetforside2.aspx?absid=72811508850"
+        },
+        {
+            "color": "hsl(0, 100%, 90%)",
+            "textColor": "hsl(0, 100%, 30%)",
+            "end": "2025-09-08T15:00:00.000+02:00",
+            "extendedProps": {
+                "cancelled": false,
+                "description": "Ændret!<br>8/9-2025 13:30 til 15:00<br>Hold: 1g informatik<br>Lærer: Line Torntoft (lito)<br>Lokale: 506<br><br>Øvrigt indhold:\n- Layouts [...]"
+            },
+            "id": "74181343623",
+            "start": "2025-09-08T13:30:00.000+02:00",
+            "title": "Ændret! • 506",
+            "url": "/lectio/305/aktivitet/aktivitetforside2.aspx?absid=74181343623"
+        },
+        {
+            "color": "hsl(-210, 100%, 90%)",
+            "textColor": "hsl(-210, 100%, 30%)",
+            "end": "2025-09-09T09:30:00.000+02:00",
+            "extendedProps": {
+                "cancelled": false,
+                "description": "9/9-2025 08:00 til 09:30<br>Hold: 2025 maB -1gX<br>Lærer: Emil Åsheim Ingvardsen (emin)<br>Lokale: 507<br><br>Lektier:\n- Opgave 0.8.5 i ibogen [...]"
+            },
+            "id": "72811513194",
+            "start": "2025-09-09T08:00:00.000+02:00",
+            "title": "2025 maB -1gX • 507",
+            "url": "/lectio/305/aktivitet/aktivitetforside2.aspx?absid=72811513194"
+        },
+        {
+            "color": "hsl(166, 100%, 90%)",
+            "textColor": "hsl(166, 100%, 30%)",
+            "end": "2025-09-09T11:20:00.000+02:00",
+            "extendedProps": {
+                "cancelled": false,
+                "description": "Felttur<br>9/9-2025 09:50 til 11:20<br>Hold: 2025 nv -1gX<br>Lærer: hlj, jasp<br>Lokale: null<br><br>Lektier:\n- Dokument til elever Vedr. felttur.docx [...]\n (Husk vi mødes ved Strandpromenaden overfor Silvan ved times start - senest kl 9.55.)\n- Delhypoteser, og planen over hvilke forsøg i vil udføre for at teste delhypoteserne, skal være klar således de kan medbringes til feltturen. Dvs. de skal være færdige inden opstarten på dette modul. [...]\n- Katalog over forskellige målinger _NV 2025-26.docx [...]\n (Her er en forklaring af de målinger I skal foretage ved fjorden. Sørg for at kigge kataloget igennem, så I ved nogenlunde hvordan I skal udføre de forskellige forsøg.)"
+            },
+            "id": "72811501664",
+            "start": "2025-09-09T09:50:00.000+02:00",
+            "title": "Felttur",
+            "url": "/lectio/305/aktivitet/aktivitetforside2.aspx?absid=72811501664"
+        },
+        {
+            "color": "hsl(166, 100%, 90%)",
+            "textColor": "hsl(166, 100%, 30%)",
+            "end": "2025-09-09T13:20:00.000+02:00",
+            "extendedProps": {
+                "cancelled": false,
+                "description": "Felttur<br>9/9-2025 11:50 til 13:20<br>Hold: 2025 nv -1gX<br>Lærer: hlj, jasp<br>Lokale: null"
+            },
+            "id": "72811501714",
+            "start": "2025-09-09T11:50:00.000+02:00",
+            "title": "Felttur",
+            "url": "/lectio/305/aktivitet/aktivitetforside2.aspx?absid=72811501714"
+        },
+        {
+            "color": "hsl(166, 100%, 90%)",
+            "textColor": "hsl(166, 100%, 30%)",
+            "end": "2025-09-09T15:00:00.000+02:00",
+            "extendedProps": {
+                "cancelled": false,
+                "description": "12 Horsens Fjord (ke 7)<br>9/9-2025 13:30 til 15:00<br>Hold: 2025 nv -1gX<br>Lærer: Jane Savskov Runager (jasp)<br>Lokale: 507<br><br>Lektier:\n- Horsens Fjord PPT opbygning.docx [...]"
+            },
+            "id": "72811501810",
+            "start": "2025-09-09T13:30:00.000+02:00",
+            "title": "12 Horsens Fjord (ke 7) • 507",
+            "url": "/lectio/305/aktivitet/aktivitetforside2.aspx?absid=72811501810"
+        },
+        {
+            "color": "hsl(166, 100%, 90%)",
+            "textColor": "hsl(166, 100%, 30%)",
+            "end": "2025-09-10T09:30:00.000+02:00",
+            "extendedProps": {
+                "cancelled": false,
+                "description": "13 Horsens Fjord (ke 8)<br>10/9-2025 08:00 til 09:30<br>Hold: 2025 nv -1gX<br>Lærer: Jane Savskov Runager (jasp)<br>Lokale: 4203<br><br>Note:\nFremlæggelser/opsamling"
+            },
+            "id": "72811502225",
+            "start": "2025-09-10T08:00:00.000+02:00",
+            "title": "13 Horsens Fjord (ke 8) • 4203",
+            "url": "/lectio/305/aktivitet/aktivitetforside2.aspx?absid=72811502225"
+        },
+        {
+            "color": "hsl(50, 100%, 90%)",
+            "textColor": "hsl(50, 100%, 30%)",
+            "end": "2025-09-10T11:20:00.000+02:00",
+            "extendedProps": {
+                "cancelled": false,
+                "description": "10/9-2025 09:50 til 11:20<br>Hold: 2025 daA-1gX<br>Lærer: Camilla Fangel Mikkelsen (cfm)<br>Lokale: 507"
+            },
+            "id": "72811510974",
+            "start": "2025-09-10T09:50:00.000+02:00",
+            "title": "2025 daA-1gX • 507",
+            "url": "/lectio/305/aktivitet/aktivitetforside2.aspx?absid=72811510974"
+        },
+        {
+            "color": "hsl(166, 100%, 90%)",
+            "textColor": "hsl(166, 100%, 30%)",
+            "end": "2025-09-11T09:30:00.000+02:00",
+            "extendedProps": {
+                "cancelled": false,
+                "description": "Kroppen som motor - Fysik 1<br>11/9-2025 08:00 til 09:30<br>Hold: 2025 nv -1gX<br>Lærer: Peter Lystlund Matzen (plm)<br>Lokale: 4206<br><br>Lektier:\n- Læs om densitet i kompendiet : Kompendium Kroppen som Motor - Fysik.docx [...]"
+            },
+            "id": "72811516169",
+            "start": "2025-09-11T08:00:00.000+02:00",
+            "title": "Kroppen som motor - Fysik 1 • 4206",
+            "url": "/lectio/305/aktivitet/aktivitetforside2.aspx?absid=72811516169"
+        },
+        {
+            "color": "hsl(50, 100%, 90%)",
+            "textColor": "hsl(50, 100%, 30%)",
+            "end": "2025-09-11T11:20:00.000+02:00",
+            "extendedProps": {
+                "cancelled": false,
+                "description": "11/9-2025 09:50 til 11:20<br>Hold: 2025 daA-1gX<br>Lærer: Camilla Fangel Mikkelsen (cfm)<br>Lokale: 507"
+            },
+            "id": "72811511034",
+            "start": "2025-09-11T09:50:00.000+02:00",
+            "title": "2025 daA-1gX • 507",
+            "url": "/lectio/305/aktivitet/aktivitetforside2.aspx?absid=72811511034"
+        },
+        {
+            "color": "hsl(-210, 100%, 90%)",
+            "textColor": "hsl(-210, 100%, 30%)",
+            "end": "2025-09-11T13:20:00.000+02:00",
+            "extendedProps": {
+                "cancelled": false,
+                "description": "11/9-2025 11:50 til 13:20<br>Hold: 2025 maB -1gX<br>Lærer: Emil Åsheim Ingvardsen (emin)<br>Lokale: 507"
+            },
+            "id": "72811508926",
+            "start": "2025-09-11T11:50:00.000+02:00",
+            "title": "2025 maB -1gX • 507",
+            "url": "/lectio/305/aktivitet/aktivitetforside2.aspx?absid=72811508926"
+        },
+        {
+            "color": "hsl(-76, 100%, 90%)",
+            "textColor": "hsl(-76, 100%, 30%)",
+            "end": "2025-09-12T09:30:00.000+02:00",
+            "extendedProps": {
+                "cancelled": false,
+                "description": "12/9-2025 08:00 til 09:30<br>Hold: 2025 keB -1gX<br>Lærer: Jane Savskov Runager (jasp)<br>Lokale: 4203"
+            },
+            "id": "72811510259",
+            "start": "2025-09-12T08:00:00.000+02:00",
+            "title": "2025 keB -1gX • 4203",
+            "url": "/lectio/305/aktivitet/aktivitetforside2.aspx?absid=72811510259"
+        },
+        {
+            "color": "hsl(166, 100%, 90%)",
+            "textColor": "hsl(166, 100%, 30%)",
+            "end": "2025-09-12T11:20:00.000+02:00",
+            "extendedProps": {
+                "cancelled": false,
+                "description": "2 Kroppen som motor (bi1)<br>12/9-2025 09:50 til 11:20<br>Hold: 2025 nv -1gX<br>Lærer: Hanne Lærke Lund Hansen (hlj)<br>Lokale: 4205<br><br>Lektier:\n- BtT 20-22 og 26-29 [...]"
+            },
+            "id": "72811516901",
+            "start": "2025-09-12T09:50:00.000+02:00",
+            "title": "2 Kroppen som motor (bi1) • 4205",
+            "url": "/lectio/305/aktivitet/aktivitetforside2.aspx?absid=72811516901"
+        },
+        {
+            "color": "hsl(300, 100%, 90%)",
+            "textColor": "hsl(300, 100%, 30%)",
+            "end": "2025-09-12T09:30:00.000+02:00",
+            "extendedProps": {
+                "cancelled": false,
+                "description": "Fællessamling 1g<br>12/9-2025 09:10 til 09:30<br>Hold: Alle 1. HHX-elever (HHX), Alle 1. HTX-elever (HTX), Alle Lærere (HHX), Alle Lærere (HTX)<br>Lærer: ag, suag<br>Lokale: Multisal"
+            },
+            "id": "74112972055",
+            "start": "2025-09-12T09:10:00.000+02:00",
+            "title": "Fællessamling 1g • Multisal",
+            "url": "/lectio/305/aktivitet/aktivitetforside2.aspx?absid=74112972055"
+        }
+    ]
+}
