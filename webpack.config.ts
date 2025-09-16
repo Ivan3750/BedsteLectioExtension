@@ -25,7 +25,7 @@ let generalConfig: any = {
                 use: [
                     {
                         loader: 'ts-loader',
-                        // Options: {
+                        // options: {
                         //     transpileOnly: true,
                         // },
                     },
@@ -34,17 +34,15 @@ let generalConfig: any = {
             },
             {
                 test: /\.css$/,
-                use: [
-                    {
-                        loader: 'style-loader',
-                    },
-                    {
-                        loader: 'css-loader',
-                    },
-                    {
-                        loader: 'postcss-loader',
-                    },
-                ],
+                use: [{ loader: 'style-loader' }, { loader: 'css-loader' }, { loader: 'postcss-loader' }],
+            },
+            // >>> ДОДАНО: обробка зображень <<<
+            {
+                test: /\.(png|jpe?g|gif|svg|ico)$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'assets/[name][ext]',
+                },
             },
         ],
     },

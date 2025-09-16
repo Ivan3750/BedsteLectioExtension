@@ -1,74 +1,123 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import luxonPlugin from '@fullcalendar/luxon3';
 import timeGridPlugin from '@fullcalendar/timegrid';
 import daLocale from '@fullcalendar/core/locales/da';
 import FullCalendar from '@fullcalendar/react';
 import { extractEvents } from './extractor';
-
 import { DateTime } from 'luxon';
 import { toTitleCase } from 'utils/string';
 import { cn } from 'utils/cn';
-import { linkToCalendarDate } from 'utils/page';
 import { Button } from 'components/button';
 import { ChevronsLeft, ChevronsRight } from 'lucide-react';
 import tippy from 'tippy.js';
 import { sanitize } from 'dompurify';
 
-export const CalendarPage = (props: { originalContent: Document }) => {
-    const content = props.originalContent;
-    const events = extractEvents(content);
+export const CalendarPage = () => {
+    const calendarRef = useRef<FullCalendar>(null);
 
-    const calendarRef = React.createRef<FullCalendar>();
+    // --- Поточний тиждень / week з URL ---
+    const urlParams = new URLSearchParams(window.location.search);
+    const weekParam = urlParams.get('week');
+    const initialDate: DateTime = weekParam && weekParam.length >= 5
+        ? DateTime.fromObject({
+            weekYear: parseInt(weekParam.slice(-4)),
+            weekNumber: parseInt(weekParam.slice(0, weekParam.length - 4)),
+            weekday: 1
+        }, { zone: 'local' })
+        : DateTime.local();
 
+    const [currentDate, setCurrentDate] = useState(initialDate);
+    const [events, setEvents] = useState<any[]>([]);
+    const [loading, setLoading] = useState(true);
 
+    // --- Функція fetch для потрібного тижня ---
+    const fetchWeek = async (week: string) => {
+        const url = `https://www.lectio.dk/lectio/305/SkemaNy.aspx?week=${week}`;
+        const res = await fetch(url, { method: 'GET', credentials: 'include' });
+        const text = await res.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(text, 'text/html');
+        return doc;
+    };
+
+    // --- Підвантаження подій при зміні currentDate ---
+    useEffect(() => {
+        const loadEvents = async () => {
+            setLoading(true);
+            const weekString = `${currentDate.weekNumber}${currentDate.year}`;
+            const doc = await fetchWeek(weekString);
+            const extracted = extractEvents(doc, currentDate);
+            setEvents(extracted.events);
+            setLoading(false);
+
+            // Перемістити календар на потрібну дату
+            if (calendarRef.current) {
+                calendarRef.current.getApi().gotoDate(currentDate.toJSDate());
+            }
+        };
+
+        loadEvents();
+    }, [currentDate]);
+
+    // --- Оновлення URL без перезавантаження ---
+    const updateURL = (date: DateTime) => {
+        const weekParam = `${date.weekNumber}${date.year}`;
+        const url = new URL(document.location.href);
+        url.searchParams.set('week', weekParam);
+        if (document.location.href !== url.toString()) {
+            window.history.pushState({}, '', url.toString());
+        }
+    };
+
+    // --- Навігація ---
+    const goToToday = () => {
+        const today = DateTime.local();
+        setCurrentDate(today);
+        updateURL(today);
+    };
+
+    const goToPreviousWeek = () => {
+        const prev = currentDate.minus({ weeks: 1 });
+        setCurrentDate(prev);
+        updateURL(prev);
+    };
+
+    const goToNextWeek = () => {
+        const next = currentDate.plus({ weeks: 1 });
+        setCurrentDate(next);
+        updateURL(next);
+    };
 
     return (
         <div className="page-container">
-            {/*             <div> {JSON.stringify(events)}</div>
- */}            <div className="mb-8 flex items-center justify-between">
+            <div className="mb-8 flex items-center justify-between">
                 <h1 className="!m-0">
-                    Skema (Uge {events.interval.start?.weekNumber}, {events.interval.start?.year})
+                    Skema (Uge {currentDate.weekNumber}, {currentDate.year})
                 </h1>
                 <div className="flex space-x-2">
-                    {events.interval?.start?.hasSame(DateTime.local(), 'week') ? null : (
-                        <Button
-                            onClick={() => {
-                                const today = DateTime.now();
-                                document.location.href = linkToCalendarDate(document.location, today);
-                            }}
-                        >
-                            I dag
-                        </Button>
+                    {!currentDate.hasSame(DateTime.local(), 'week') && (
+                        <Button onClick={goToToday}>I dag</Button>
                     )}
-                    <Button
-                        onClick={() => {
-                            const current = events.interval.start ?? DateTime.now();
-                            const previous = current.minus({ weeks: 1 });
-                            document.location.href = linkToCalendarDate(document.location, previous);
-                        }}
-                    >
+                    <Button onClick={goToPreviousWeek}>
                         <ChevronsLeft />
                     </Button>
-                    <Button
-                        onClick={() => {
-                            const current = events.interval.start ?? DateTime.now();
-                            const previous = current.plus({ weeks: 1 });
-                            document.location.href = linkToCalendarDate(document.location, previous);
-                        }}
-                    >
+                    <Button onClick={goToNextWeek}>
                         <ChevronsRight />
                     </Button>
                 </div>
             </div>
+
+            {loading ? <p>Loading...</p> : null}
+
             <div className="!mt-0 not-prose">
                 <FullCalendar
-                    key={events.interval?.start?.toISODate()}
+                    key={currentDate.toISODate()}
                     ref={calendarRef}
                     locale={daLocale}
                     plugins={[luxonPlugin, timeGridPlugin]}
                     initialView={window.innerWidth >= 768 ? 'timeGridWeek' : 'timeGridDay'}
-                    initialDate={events.interval?.start?.toJSDate() ?? DateTime.now().toJSDate()}
-                    events={events.events}
+                    initialDate={currentDate.toJSDate()}
+                    events={events}
                     eventDidMount={(args) => {
                         tippy(args.el, {
                             content: sanitize(args.event.extendedProps.description, { USE_PROFILES: { html: true } }),
@@ -105,7 +154,7 @@ export const CalendarPage = (props: { originalContent: Document }) => {
                                     <span
                                         className={cn(
                                             'flex items-center justify-center ml-[0.375rem] font-semibold text-black dark:text-white',
-                                            todayClasses,
+                                            todayClasses
                                         )}
                                     >
                                         {date.day}

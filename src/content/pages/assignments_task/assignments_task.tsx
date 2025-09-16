@@ -1,12 +1,78 @@
-import React from 'react';
-import { extractAssignment } from './extractor'; // ✅ правильна назва
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from 'components/card';
-import { Badge } from 'components/badge';
-import { RelativeTime } from 'components/relative-time';
-import { DateTime } from 'luxon';
+import React, { useState } from "react";
+import { extractAssignment, AssignmentDetails } from "./extractor";
+import {
+    Card,
+    CardHeader,
+    CardTitle,
+    CardDescription,
+    CardContent,
+} from "components/card";
+import { Badge } from "components/badge";
+import { RelativeTime } from "components/relative-time";
+import { DateTime } from "luxon";
 
-export const AssignmentTaskPage = (props: { originalContent: Document }) => {
-    const assignment = extractAssignment(props.originalContent);
+interface AssignmentTaskPageProps {
+    originalContent: Document;
+}
+
+// 🔹 Хелпер для postback
+async function doPostBack(
+    originalContent: Document,
+    eventTarget: string,
+    eventArgument: string,
+    extraFields: Record<string, string> = {}
+): Promise<Document> {
+    const formData = new URLSearchParams();
+
+    // зберемо всі hidden inputs
+    originalContent
+        .querySelectorAll<HTMLInputElement>("input[type=hidden]")
+        .forEach((input) => {
+            if (input.name) {
+                formData.append(input.name, input.value ?? "");
+            }
+        });
+
+    // ASP.NET спецполя
+    formData.set("__EVENTTARGET", eventTarget);
+    formData.set("__EVENTARGUMENT", eventArgument);
+
+    // додаткові поля (наприклад, studentId)
+    for (const [key, val] of Object.entries(extraFields)) {
+        formData.set(key, val);
+    }
+
+    const response = await fetch(window.location.href, {
+        method: "POST",
+        body: formData,
+        credentials: "include",
+        headers: {
+            "Content-Type": "application/x-www-form-urlencoded",
+        },
+    });
+
+    const text = await response.text();
+    return new DOMParser().parseFromString(text, "text/html");
+}
+
+export const AssignmentTaskPage: React.FC<AssignmentTaskPageProps> = ({
+    originalContent,
+}) => {
+    const [assignment, setAssignment] = useState<AssignmentDetails>(
+        extractAssignment(originalContent)
+    );
+
+    const handleAddToGroup = async (studentId: string) => {
+        const newDoc = await doPostBack(
+            originalContent,
+            "m$Content$groupStudentAddBtn",
+            "",
+            { "m$Content$groupStudentAddDD": studentId }
+        );
+
+        // оновлюємо assignment зі свіжого HTML
+        setAssignment(extractAssignment(newDoc));
+    };
 
     return (
         <div className="page-container">
@@ -14,15 +80,17 @@ export const AssignmentTaskPage = (props: { originalContent: Document }) => {
                 {/* Назва завдання */}
                 <Card className="shadow-lg">
                     <CardHeader>
-                        <CardTitle className="text-2xl font-bold">{assignment.title}</CardTitle>
+                        <CardTitle className="text-2xl font-bold">
+                            {assignment.title}
+                        </CardTitle>
                         <CardDescription>
-                            Afleveringsfrist:{' '}
+                            Afleveringsfrist:{" "}
                             {assignment.deadline ? (
                                 <Badge variant="secondary">
                                     <RelativeTime date={assignment.deadline.toJSDate()} />
                                 </Badge>
                             ) : (
-                                'Ukendt'
+                                "Ukendt"
                             )}
                         </CardDescription>
                     </CardHeader>
@@ -47,68 +115,34 @@ export const AssignmentTaskPage = (props: { originalContent: Document }) => {
                     </CardContent>
                 </Card>
 
-                {/* Документи */}
-                {assignment.descriptionFiles.length > 0 && (
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Opgavebeskrivelse</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-2">
-                            {assignment.descriptionFiles.map((file, i) => (
-                                <a
-                                    key={i}
-                                    href={file.link}
-                                    className="block p-2 rounded-lg hover:bg-gray-100 transition"
-                                >
-                                    📄 {file.name}
-                                </a>
+                {/* Форма додавання до групи */}
+                <Card>
+                    <CardHeader>
+                        <CardTitle>Tilføj til gruppeaflevering</CardTitle>
+                    </CardHeader>
+                    <CardContent>
+                        <select id="groupStudentSelect" className="border p-2 rounded">
+                            <option value="">Vælg elev</option>
+                            {assignment.groupAddOptions.map((opt) => (
+                                <option key={opt.id} value={opt.id}>
+                                    {opt.name}
+                                </option>
                             ))}
-                        </CardContent>
-                    </Card>
-                )}
-
-                {/* Групові учасники */}
-                {assignment.groupMembers.length > 0 && (
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Gruppemedlemmer</CardTitle>
-                        </CardHeader>
-                        <CardContent>
-                            <ul className="list-disc list-inside space-y-1">
-                                {assignment.groupMembers.map((member, i) => (
-                                    <li key={i}>{member}</li>
-                                ))}
-                            </ul>
-                        </CardContent>
-                    </Card>
-                )}
-
-                {/* Сабмішени */}
-                {assignment.submissions.length > 0 && (
-                    <Card>
-                        <CardHeader>
-                            <CardTitle>Afleveringer</CardTitle>
-                        </CardHeader>
-                        <CardContent className="space-y-4">
-                            {assignment.submissions.map((sub, i) => (
-                                <div key={i} className="p-3 border rounded-lg space-y-1">
-                                    <div className="flex justify-between text-sm text-gray-500">
-                                        <span>{sub.user}</span>
-                                        <span>
-                                            {sub.time.isValid ? sub.time.toLocaleString(DateTime.DATETIME_SHORT) : ''}
-                                        </span>
-                                    </div>
-                                    {sub.comment && <p className="text-gray-700">{sub.comment}</p>}
-                                    {sub.file && (
-                                        <a href={sub.file.link} className="text-blue-600 hover:underline">
-                                            📎 {sub.file.name}
-                                        </a>
-                                    )}
-                                </div>
-                            ))}
-                        </CardContent>
-                    </Card>
-                )}
+                        </select>
+                        <button
+                            className="ml-2 px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700"
+                            onClick={() => {
+                                const select = document.getElementById(
+                                    "groupStudentSelect"
+                                ) as HTMLSelectElement | null;
+                                const studentId = select?.value;
+                                if (studentId) handleAddToGroup(studentId);
+                            }}
+                        >
+                            Tilføj
+                        </button>
+                    </CardContent>
+                </Card>
             </div>
         </div>
     );

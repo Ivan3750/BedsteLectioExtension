@@ -40,7 +40,13 @@ export const PAGES = {
         inHeader: true,
     },
     documents: { name: 'Dokumenter', link: '/lectio/$school/DokumentOversigt.aspx', supported: true, inHeader: true },
-    messages: { name: 'Beskeder', link: '/lectio/$school/beskeder2.aspx', supported: true, inHeader: true },
+    messages: { name: 'Beskeder', link: '/lectio/$school/beskeder2.aspx', supported: false, inHeader: true },
+    messages_open: {
+        name: 'Beskeder',
+        link: '/lectio/$school/beskeder2.aspx',
+        supported: true,
+        inHeader: false,
+    },
 };
 
 export const getPages = (location: Location) => {

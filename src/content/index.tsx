@@ -16,6 +16,8 @@ import { AbsenceOverviewPage } from './pages/absence/overview';
 import { AbsenceReasonsPage } from './pages/absence/reasons';
 import { TaskPage } from './pages/homework/task';
 import { MessagesPage } from './pages/messege/messege';
+import { MessagesPageOpen } from './pages/messege/message_open/messege';
+import favicon from '../assets/icons/favicon.png';
 
 const Main = (props: { page: JSX.Element }) => {
     return (
@@ -109,6 +111,10 @@ if (localStorage.getItem('bedstelectio-disabled')) {
                 page = <MessagesPage originalContent={originalContent} />;
                 break;
             }
+            case 'messege_open': {
+                page = <MessagesPageOpen originalContent={originalContent} />;
+                break;
+            }
             default: {
                 page = <div>Not found</div>;
                 break;
@@ -124,3 +130,15 @@ if (localStorage.getItem('bedstelectio-disabled')) {
         }
     }
 }
+function setFavicon(url: string): void {
+    let link = document.querySelector<HTMLLinkElement>("link[rel~='icon']");
+    if (!link) {
+        link = document.createElement('link');
+        link.rel = 'icon';
+        document.head.appendChild(link);
+    }
+    link.href = url;
+}
+
+// Виклик:
+setFavicon(favicon);
