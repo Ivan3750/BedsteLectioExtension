@@ -76,7 +76,7 @@ if (localStorage.getItem('bedstelectio-disabled')) {
                 break;
             }
             case 'calendar': {
-                page = <CalendarPage originalContent={originalContent} />;
+                page = <CalendarPage />;
                 break;
             }
             case 'assignments': {
